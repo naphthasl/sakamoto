@@ -895,7 +895,13 @@ def fileupload():
 	if len(read) > OPTIONS['static_upload_max_size']:
 		errorout('./', 'Upload too big, maximum size is {0} bytes.'.format(OPTIONS['static_upload_max_size']))
 	
-	StaticFile(created = round(time.time()), original = upload.filename, length = len(read), content = read)
+	StaticFile(
+		created  = round(time.time()),
+		original = upload.filename,
+		length   = len(read),
+		content  = read
+	)
+
 	commit()
 	
 	redirect('./files')
