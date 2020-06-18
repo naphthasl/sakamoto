@@ -1,7 +1,9 @@
 body {
 	overflow-x: hidden;
 	
-	background-color: #b0c0d0;
+	/* linear-gradient(#416fa5, #6bb86e) */
+	
+	background: url("stream.webp") bottom left no-repeat fixed, linear-gradient(#b0c0d0, #6ab7a2) bottom left no-repeat fixed;
 }
 
 html {
