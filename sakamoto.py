@@ -893,7 +893,9 @@ def fileupload():
 	
 	read = upload.file.read()
 	if len(read) > OPTIONS['static_upload_max_size']:
-		errorout('./', 'Upload too big, maximum size is {0} bytes.'.format(OPTIONS['static_upload_max_size']))
+		errorout('./', 'Upload too big, maximum size is {0} bytes.'.format(
+			OPTIONS['static_upload_max_size']
+		))
 	
 	StaticFile(
 		created  = round(time.time()),
@@ -913,12 +915,22 @@ def filesget(id):
 	# helper: *deep level route*
 
 	rfile = StaticFile.get(id=id)
-	mimetype = (lambda x: 'application/octet-stream' if x == None else x)(mimetypes.guess_type(rfile.original, strict = True))
+	mimetype = (lambda x: 'application/octet-stream' if x == None else x)(
+		mimetypes.guess_type(rfile.original, strict = True)
+	)
 	response.set_header('Accept-Ranges', 'bytes')
 	response.set_header('Content-Length', str(rfile.length))
 	response.set_header('Content-Type', mimetype)
-	response.set_header('Last-Modified', datetime.fromtimestamp(rfile.created, tz=pytz.timezone('GMT')).strftime('%a, %d %b %Y %H:%M:%S GMT'))
-	response.set_header('ETag', '"{0}"'.format(xxhash.xxh64(rfile.content).hexdigest()))
+	response.set_header(
+		'Last-Modified',
+		datetime.fromtimestamp(
+			rfile.created,
+			tz=pytz.timezone('GMT')
+		).strftime('%a, %d %b %Y %H:%M:%S GMT')
+	)
+	response.set_header('ETag', '"{0}"'.format(
+		xxhash.xxh64(rfile.content).hexdigest()
+	))
 	
 	return io.BytesIO(rfile.content)
 
