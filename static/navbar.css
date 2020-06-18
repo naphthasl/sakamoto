@@ -1,0 +1,177 @@
+body {
+	background: url('./bgv.png') repeat-x 0 0;
+	
+	overflow: hidden;
+
+	font-size: 12px;
+	font-weight: bold;
+	
+	color: white;
+}
+
+.width-restrictor {
+	position: absolute;
+	
+	top: 0;
+	left: 0;
+	
+	width: 982px;
+}
+
+.line-continuation {
+	position: absolute;
+	
+	top: 40px;
+	right: 0;
+	
+	height: 24px;
+	
+	border-right: 1px solid black;
+}
+
+.bar-bottom {
+	position: absolute;
+	left: 0px;
+	top: 40px;
+	height: 24px;
+	
+	background: url('./bg_edge_right_new.png') no-repeat right 0, url('./bg_black_back.png') repeat-x 0 0;
+	
+	padding: 5px;
+	
+	width: 234px;
+}
+
+.sakamoto {
+	position: absolute;
+	
+	background: url('./sakamoto_blue.png') no-repeat left 0;
+	
+	top: 0;
+	left: 0;
+	
+	height: 64px;
+	width: 245px;
+	
+	z-index: 128;
+}
+
+.bar-bottom-breadcrumb {
+	position: absolute;
+	left: 244px;
+	top: 40px;
+	height: 24px;
+	
+	background: url('./bg_black_back.png') repeat-x 0 0;
+}
+
+.bar-bottom-breadcrumb li {
+	display: block;
+	float: left;
+	height: 24px;
+	
+	padding-top: 6px;
+	padding-bottom: 6px;
+	
+	padding-left: 22px;
+	padding-right: 16px;
+	
+	background: url('./bg_breadcrumb_left.png') no-repeat left 0, url('./bg_edge_right_new.png') no-repeat right 0;
+	
+	margin-left: -11px;
+}
+
+.bar-bottom-breadcrumb li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.bar-bottom-breadcrumb li a:hover {
+	color: yellow;
+}
+
+.bar-bottom-breadcrumb ul {
+	margin: 0;
+	padding: 0;
+	line-style-type: none;
+}
+
+.bar-user {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.bar-user .u-corner {
+	width: 160px;
+	height: 40px;
+	
+	border-left: 1px solid #102030;
+	border-right: 1px solid #405c80;
+}
+
+.bar-user .u-corner .u-corner-inner {
+	position: relative;
+
+	width: 158px;
+	height: 40px;
+	
+	border-left: 1px solid #405c80;
+	border-right: 1px solid #102030;
+	
+	font-weight: normal;
+}
+
+.bar-user .u-corner .u-corner-inner .u-corner-text {
+	color: #fff;
+
+	position: absolute;
+	
+	right: 0;
+	bottom: 0;
+	
+	padding: 2px;
+	
+	text-align: right;
+	font-size: 9px;
+}
+
+.bar-user .user-buttons {
+	margin-left: 1px;
+}
+
+.bar-user .user-buttons a {
+	float: left;
+	display: block;
+	
+	width: 82px;
+	height: 28px;
+	
+	padding-top: 6px;
+	padding-bottom: 6px;
+	
+	text-align: center;
+	font-weight: bold;
+	
+	background: url("bg_buttons_big.png") no-repeat 0px 0px;
+	
+	text-decoration: none;
+	
+	color: white;
+}
+
+.bar-user .user-buttons .login-button {
+	background: url("bg_buttons_big.png") no-repeat -82px 0px;
+}
+
+.login-button, .logout-button {
+	margin-left: -2px;
+}
+
+.bar-user .user-buttons .logout-button {
+	background: url("bg_buttons_big.png") no-repeat -164px 0px;
+}
+
+.bar-user .user-buttons a:hover {
+	color: yellow;
+}

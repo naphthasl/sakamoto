@@ -1,0 +1,245 @@
+body {
+	font-family: Helvetica, sans-serif;
+	font-size:   12px;
+	/* Yes, I really made this whole thing just so I could crack the
+	 * "Helvetica Standard" joke. Yes, this is genius. Watch Nichijou. */
+	 
+	text-rendering: optimizeSpeed;
+	 
+	color: #000;
+}
+
+.actionmenu ul,.menu ul,.actions ul {
+	list-style-type: none;
+}
+
+table {
+	width: 100%;
+	
+	border-collapse: collapse;
+}
+
+table tr:nth-child(even) td {
+	background-color: #e0e8f8;
+}
+
+table tr:nth-child(odd) td {
+	background-color: #f0f4ff;
+}
+
+table tr td,th {
+	border: 1px solid black;
+	
+	padding: 2px;
+}
+
+table tr {
+	border: 1px solid black;
+}
+
+.fileupload {
+	background-color: #f0f4ff;
+	
+	width: 100%;
+	
+	border: 1px solid black;
+	
+	margin-bottom: 16px;
+	
+	padding: 2px;
+	
+	box-sizing: border-box;
+}
+
+.fileupload input[type=submit] {
+	float: right;
+}
+
+.error, .tip, .actions {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+	
+	padding: 4px;
+
+	box-sizing: border-box;
+}
+
+.error p, .tip p {
+	margin: 0;
+}
+
+.error {
+	background: #fcb5be;
+	border-color: #fc1e2d;
+}
+
+.tip {
+	background: #aed6fc;
+	border-color: #379dfc;
+}
+
+.actions {
+	background: #f0f4ff;
+	
+	width: 360px;
+	
+	margin-bottom: 0;
+	
+	border-bottom: 0;
+	
+	padding: 0;
+}
+
+.actions ul {
+	margin: 0;
+	padding: 0;
+}
+
+.actions li {
+	position: relative;
+
+	border-bottom: 1px solid black;
+}
+
+.actions .listhead {
+	position: relative;
+
+	background: url("bgv.png") repeat-x 0 0;
+	
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	
+	padding-top: 4px;
+	
+	font-size: 12px;
+	
+	height: 20px;
+	
+	box-sizing: border-box;
+}
+
+.actions .listhead code {
+	display: block;
+
+	background-color: yellow;
+	border-left: 1px solid grey;
+	color: black;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
+	
+	height: 100%;
+	
+	text-align: right;
+	
+	box-sizing: border-box;
+}
+
+.actions li .led {
+	float: right;
+	
+	margin: 0;
+	padding: 0;
+	
+	background: url('./builtins.png') -192px -64px no-repeat;
+	
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	
+	width: 15px;
+	height: 15px;
+}
+
+.actions li .led:checked {
+	background: url('./builtins.png') -208px -64px no-repeat;
+}
+
+.actions li a {
+	display: block;
+
+	text-decoration: none;
+	
+	color: #0000a0;
+	
+	padding: 4px;
+	
+	width: 100%;
+	
+	box-sizing: border-box;
+}
+
+.actions li a:hover {
+	background-color: #ffffc0;
+}
+
+.layout tr, .layout td {
+	border: 0 !important;
+	background: transparent !important;
+}
+
+.layout tr td {
+	vertical-align: top;
+	padding: 4px;
+}
+
+.icon {
+	display: inline-block;
+	
+	vertical-align: middle;
+	
+	margin: 0;
+	padding: 0;
+
+	background: url('./builtins.png') -32px -64px no-repeat;
+
+	width: 16px;
+	height: 16px;
+}
+
+.icon-small {
+	transform: scale(0.8);
+}
+
+.icon.icon-lightbulb     { background-position: -48px    -0px   ; }
+.icon.icon-error         { background-position: -80px    -16px  ; }
+.icon.icon-success       { background-position: -64px    -16px  ; }
+.icon.icon-cross         { background-position: -48px    -16px  ; }
+.icon.icon-home          { background-position: -128px   -48px  ; }
+.icon.icon-cog           { background-position: -0px     -48px  ; }
+.icon.icon-edit-user     { background-position: -64px    -48px  ; }
+.icon.icon-user          { background-position: -48px    -48px  ; }
+.icon.icon-batch         { background-position: -48px    -112px ; }
+.icon.icon-cmd           { background-position: -128px   -96px  ; }
+.icon.icon-binary        { background-position: -64px    -80px  ; }
+.icon.icon-paperclip     { background-position: -48px    -64px  ; }
+.icon.icon-computer      { background-position: -144px   -112px ; }
+.icon.icon-processor     { background-position: -64px    -0px   ; }
+.icon.icon-processor-3d  { background-position: -112px   -80px  ; }
+.icon.icon-eye           { background-position: -0px     -16px  ; }
+.icon.icon-refresh       { background-position: -208px   -16px  ; }
+.icon.icon-fullscreen    { background-position: -208px   -0px   ; }
+.icon.icon-tick          { background-position: -240px   -32px  ; }
+.icon.icon-question      { background-position: -208px   -32px  ; }
+.icon.icon-padlock       { background-position: -224px   -32px  ; }
+.icon.icon-database      { background-position: -160px   -48px  ; }
+.icon.icon-signs         { background-position: -96px    -0px   ; }
+.icon.icon-comment       { background-position: -176px   -32px  ; }
+.icon.icon-new-comment   { background-position: -96px    -16px  ; }
+.icon.icon-new-comments  { background-position: -112px   -16px  ; }
+.icon.icon-shield-warn   { background-position: -96px    -48px  ; }
+.icon.icon-shield-error  { background-position: -112px   -48px  ; }
+.icon.icon-inbox         { background-position: -96px    -32px  ; }
+.icon.icon-function      { background-position: -144px   -0px   ; }
+.icon.icon-photos        { background-position: -192px   -0px   ; }
+.icon.icon-tag           { background-position: -176px   -16px  ; }
+.icon.icon-megaphone     { background-position: -192px   -32px  ; }
+.icon.icon-folder        { background-position: -176px   -48px  ; }
+.icon.icon-book          { background-position: -224px   -16px  ; }

@@ -1,0 +1,209 @@
+body {
+	overflow-x: hidden;
+	
+	background-color: #b0c0d0;
+}
+
+html {
+	border-right: 1px solid black;
+	
+	height: 100%;
+}
+
+.sect {
+	margin-top: 10px;
+	
+	border-left: 1px solid #102030;
+	border-right: 1px solid #102030;
+	
+	background-color: #f0f4f8;
+	
+	text-align: center;
+	font-size: 12px;
+	
+	border-bottom: 1px solid #102030;
+}
+
+.sect h3 {
+	position: relative;
+	top: -1px;
+	
+	padding-top: 2px;
+	padding-bottom: -2px;
+	
+	height: 16px;
+	margin: 0;
+	
+	border-top: 1px solid #6080a0;
+	border-bottom: 1px solid #102030;
+	
+	font-size: 12px;
+	
+	color: #fff;
+	
+	background: url("bgv.png") repeat-x 0 0;
+}
+
+.sect-content {
+	text-align: left;
+}
+
+.sect-default-ul {
+	margin: 0;
+	padding: 0;
+}
+
+.sect-default-ul li {
+	width: 100%;
+}
+
+.sect-default-ul li a {
+	display: flex;
+
+	text-decoration: none;
+	color: #0000a0;
+	
+	box-sizing: border-box;
+	
+	align-items: center;
+	
+	padding-top: 4px;
+	padding-left: 4px;
+	
+	width: 100%;
+}
+
+.sect-default-ul li a:hover {
+	background-color: #ffffc0;
+}
+
+.menu ul {
+	position: relative;
+
+	font-size: 10px;
+	
+	padding-left: 16px;
+}
+
+.menu .ul-root {
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.menu li {
+	position: relative;
+}
+
+.menu li img {
+	vertical-align: middle;
+}
+
+.menu li a {
+	color: #0000a0;
+	text-decoration: none;
+}
+
+.menu li a:hover {
+	background-color: #ffffc0;
+}
+
+.menu li .actions {
+	position: absolute;
+	right: 0px;
+	
+	color: transparent;
+
+	width: 16px;
+	height: 16px;
+	
+	background: url('./builtins.png') -0px -48px no-repeat;
+}
+
+.menu li .actions:hover {
+	color: transparent;
+}
+
+.menu li .id {
+	position: absolute;
+	right: 18px;
+	
+	width: 32px;
+	height: 10px;
+	
+	text-align: right;
+	
+	padding: 2px;
+	
+	border: 1px solid grey;
+	
+	background-color: yellow;
+}
+
+.menu-index .tree-collapse, .menu-index .tree-passthrough, .menu-index .tree-mid {
+	display: inline-block;
+	vertical-align: middle;
+
+	width: 16px;
+	height: 16px;
+	
+	background: url('./builtins.png') -64px -96px no-repeat;
+	
+	color: transparent;
+}
+
+.menu-index .tree-hidden {
+	background: url('./builtins.png') -80px -96px no-repeat;
+}
+
+.menu-index .tree-passthrough {
+	background: url('./builtins.png') -112px -96px no-repeat;
+}
+
+.menu-index .tree-collapse .collapsed {
+	background: url('./builtins.png') -80px -96px no-repeat;
+}
+
+.menu-index .tree-mid {
+	background: url('./builtins.png') -96px -96px no-repeat;
+	
+	margin-left: -16px;
+}
+
+.menu-index .tree-final {
+	background: url('./builtins.png') -96px -112px no-repeat;
+}
+
+.menu-index .tree-mids {
+	background: url('./tree-mid.png') repeat-y;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 16px;
+	height: 100%;
+}
+
+.menu-index .tree-mids-final {
+	background: url('./tree-mid-final.png') no-repeat;
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+	width: 16px;
+	height: 16px;
+	
+	z-index: 128;
+}
+
+.menu-index .tree-mids-coverup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 16px;
+	height: 100%;
+}
