@@ -962,4 +962,6 @@ def server_static(filepath):
 
 	return static_file(filepath, root='./static')
 
-run(app, host='localhost', port=8080, reloader=True)
+# TODO: Add production use mode. Eventually. When you can
+# *actually* use the project in production.
+run(app, host='localhost', port=8080, reloader=True, debug=True)
