@@ -72,14 +72,14 @@
 			
 			document.querySelectorAll('.menu-index .ul-root li').forEach(function x(node) {
 				if (node.querySelectorAll('ul').length > 0) {
-					node.innerHTML = '<a class="tree-collapse" href="#" target="_self" onclick="toggleLPHidden(this.parentNode.querySelector(\'ul\')); toggleExpandClass(this);"></a> ' + node.innerHTML;
+					node.innerHTML = '<a class="tree-collapse" href="#" target="_self" onclick="toggleLPHidden(this.parentNode.querySelector(\'ul\')); toggleExpandClass(this);"></a>' + node.innerHTML;
 					
 					var cul = node.querySelector('ul');
 					cul.innerHTML = '<div class="tree-mids-coverup"><div class="tree-mids"></div><div class="tree-mids-final"></div></div>' + cul.innerHTML;
 					
 					recomputeCoverupHeights(node);
 				} else {
-					node.innerHTML = '<span class="tree-passthrough"></span> ' + node.innerHTML;
+					node.innerHTML = '<span class="tree-passthrough"></span>' + node.innerHTML;
 				}
 				
 				node.querySelectorAll('ul > li').forEach(x);
