@@ -24,11 +24,16 @@ import html, pytz, math, xxhash
 from captcha.audio import AudioCaptcha
 from captcha.image import ImageCaptcha
 from collections.abc import MutableMapping
-from bottle import Bottle, run, request, response, static_file, template, redirect, abort
+from bottle import Bottle, run, request, response
+from bottle import redirect, abort, template, static_file
 from pony.orm import *
 from datetime import datetime
 
-acceptable_username_set = set(string.ascii_lowercase + string.digits + '_-@!?./+')
+acceptable_username_set = set(
+	string.ascii_lowercase
+	+ string.digits
+	+ '_-@!?./+'
+)
 
 captchaobject = ImageCaptcha(
 	width = 160,
@@ -320,7 +325,10 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 	layout = ''
 	root = './'
 	
-	for p in select(p for p in Page if p.parent == pid).order_by(Page.position):
+	for p in select(
+			p for p in Page if p.parent == pid
+		).order_by(Page.position):
+
 		children = recurse(pid = p.id, admin = admin, callroot = False)
 		
 		if (not p.hidden) or admin:
@@ -329,7 +337,11 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 			)
 
 			actions = (
-				lambda: '<span class="id">{0}</span> <a class="actions" href="{1}actions/{0}" target="content">Actions</a>'.format(
+				lambda: (
+					'<span class="id">{0}</span>'
+					+ '<a class="actions" href="{1}actions/{0}" '
+					+ 'target="content">Actions</a>'
+				).format(
 					p.id,
 					root
 				) if admin else ''
@@ -347,7 +359,11 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 					dclass
 				)
 			else:
-				layout += '<li{5}>{0} <a href="{4}document/{1}" target="content">{2}</a> {3}'.format(
+				layout += (
+					'<li{5}>{0} '
+					+ '<a href="{4}document/{1}" target="content">{2}</a>'
+					+ ' {3}'
+				).format(
 					icon,
 					p.id,
 					html.escape(p.name),
@@ -356,10 +372,10 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 					dclass
 				)
 
-			# NOTE: Normally, the template engine would escape rogue HTML entities,
-			# but since the rescursive tree is going to be included with template
-			# value escape explicitly disabled, we have to escape values like the
-			# document name ourselves.
+			# NOTE: Normally, the template engine would escape rogue HTML
+			# entities, but since the rescursive tree is going to be included
+			# with template value escape explicitly disabled, we have to escape
+			# values like the document name ourselves.
 				
 			layout += children + '</li>\n'
 		
@@ -651,7 +667,10 @@ def actionstep(dobject: int):
 			elif request.query.type == 'etarget':
 				pg.etarget = not pg.etarget
 		else:
-			errorout('../', 'You cannot perform this action on the root tree element.')
+			errorout(
+				'../',
+				'You cannot perform this action on the root tree element.'
+			)
 
 	commit()
 	redirect('../actions/{0}?menu=1'.format(dobject))
@@ -764,8 +783,16 @@ def do_register():
 	password = request.forms.get('password')
 	username = request.forms.get('username').strip()
 	
-	if ((len(username) > 64) or (len(password) > 256)) or (not acceptable_username_set.issuperset(username)):
-		errorout('./', 'Usernames must be under 32 characters and contain only lowercase ASCII letters and numbers. Passwords must be under 256 characters.')
+	if ((len(username) > 64)
+		or (len(password) > 256)
+		or (not acceptable_username_set.issuperset(username))):
+
+		errorout(
+			'./',
+			'Usernames must be under 32 characters and contain only'
+			+ 'lowercase ASCII letters and numbers.'
+			+ 'Passwords must be under 256 characters.'
+		)
 	
 	if password != request.forms.get('password2'):
 		errorout('./', 'Passwords did not match.')
@@ -858,11 +885,18 @@ def do_register():
 			if k != 'submit':
 				if json.loads(k) in OPTIONS:
 					if type(json.loads(v)) != type(OPTIONS[json.loads(k)]):
-						errorout('./', 'JSON type mismatch error! Check the formatting and spelling of your input.')
+						errorout(
+							'./',
+							'JSON type mismatch error! Check the'
+							+ ' formatting and spelling of your input.'
+						)
 					
 					OPTIONS[json.loads(k)] = json.loads(v)
 		except json.decoder.JSONDecodeError:
-			errorout('./', 'JSONDecodeError! Check the formatting of your input.')
+			errorout(
+				'./',
+				'JSONDecodeError! Check the formatting of your input.'
+			)
 			
 	return template('redirect', redirect='./reload')
 
@@ -940,11 +974,14 @@ def filesget(id):
 # GENERIC
 @app.get('/fullreload')
 def fullreload():
-	return template('redirect', redirect='./reload')
+	return template('redirect', redirect = './reload')
 
 @app.get('/error')
 def error():
-	return template('error', error=base64.urlsafe_b64decode(request.query.error).decode())
+	return template(
+		'error',
+		error = base64.urlsafe_b64decode(request.query.error).decode()
+	)
 
 @app.get('/reload')
 def reload():
@@ -952,7 +989,11 @@ def reload():
 
 @app.get('/navbar')
 def navbar():
-	return template('navbar', user=user_details(request.get_cookie("token")), options=OPTIONS)
+	return template(
+		'navbar',
+		user    = user_details(request.get_cookie("token")),
+		options = OPTIONS
+	)
 
 @app.get('/credits')
 def credits():
@@ -963,8 +1004,13 @@ def credits():
 @app.get('/')
 @db_session
 def home():
-	for x in (select(p for p in Token if (time.time() - p.created) > 604800)[:] + select(p for p in Captcha if (time.time() - p.created) > 3600)[:]):
+	for x in (
+			select(p for p in Token if (time.time() - p.created) > 604800)[:]
+			+ select(p for p in Captcha if (time.time() - p.created) > 3600)[:]
+		):
+
 		x.delete()
+
 	commit()
 		
 	if request.query.ref:
