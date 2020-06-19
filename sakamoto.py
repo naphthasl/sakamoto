@@ -156,60 +156,20 @@ except KeyError:
 	OPTIONS['static_upload_max_size'] = 8388608
 	OPTIONS['allow_comments'        ] = True
 	OPTIONS['dangerous_tips'        ] = False
-	
-# Fun!
-dangerous_tips = [
-	"Did you know that supermarkets typically stock several different brands that produce exactly the same thing to scare customers into ignoring the insanely high prices, as shown by psychologist Barry Schwartz, who claimed that after a certain threshold is reached, an increase in the number of choices will cause a significant amount of psychological distress?",
-	"Dihydrogen monoxide is a very dangerous substance. Some of the strongest acids have a pH of 2 or 1, while dihydrogen monoxide's pH is as high as 7.",
-	"Always tip your server, but don't let it tip over.",
-	"Do not look behind you.",
-	"Did you know that you can increase the data transfer rate of a USB flash drive by wiring up the positive and negative 5V pads to the lead acid battery inside your car?",
-	"You do not recognize the bodies in the water.",
-	"Check your rank with !rank",
-	"Get another tip with !tip",
-	"Always look down the barrel of a gun before firing in order to ensure it is clean.",
-	"cheese.",
-	"owo o3o UwU *pounces on u*", 
-	"shoutout to my guy justforkicks96 for hooking me up with some jeebie weebies im gonna be lookin fresh as fuck smoking doints all day getting pot stoned off the stinky bwinky skunk skunk fuck 12",
-	"i got some jelly beans, you want some jelly beans? i like jelly beans.",
-	'<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qsuWp9tueF8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-	"Remember, what you see when you go outside is make believe. What you see on TV is what's real.",
-	"literally do not add this one",
-	"35-40%",
-	"Yo! Wassup, diggity dawgs? I just made a mess in the other room! High five! Look, jams! Huh? Don't be hatin'.",
-	"By the way, an average of 6 bugs crawl into your ears while you sleep per night, you're just too unconscious to stop them.",
-	'<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FzWebS6bgok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-	'<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/8Tz4bbqgge8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-	'<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qaxyX_d__ik" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-	"You can clean your hard drive platters after a head crash with 10-grit sandpaper. Works every time.",
-	"You weren't supposed to know about that *slaps you around*",
-	"The vivid color of this red stone reminds me of my wife's eyes when they burn with rage.",
-	"I WANT FUIT GUMY"
-]
 
-normal_tips = {
-	'actions': [
-		"Hidden pages can still be viewed via direct link, but won't be available in indexes or menus.",
-		"Disabled pages cannot be viewed directly unless you are an admin.",
-		"Enabling index mode will ensure that the menu object will be collapsed when it is first loaded into the menu (hiding its contents until they are clicked on)",
-		"Enabling \"Target Mode\" on a page will make external links open within the confines of Sakamoto's content frame, so you can embed content in Sakamoto without redirecting users away from the menu or navbar."
-	],
-	'register': [
-		"In order to protect your identity, we do not require an e-mail address for registration. The downside is that you can nolonger forget your password."
-	]
-}
+tips = json.loads(open('./tips.json', 'r').read())
 
 def get_tip(page: str = None):
 	if OPTIONS['dangerous_tips']:
 		txt = 'Unfriendly Tip: '
-		ret = random.choice(dangerous_tips)
+		ret = random.choice(tips['dangerous'])
 	else:
 		txt = 'Random Tip: '
 		if page:
-			ret = random.choice(normal_tips[page])
+			ret = random.choice(tips[page])
 		else:
 			alltips = []
-			for k, v in normal_tips.items():
+			for k, v in tips.items():
 				alltips.append(v)
 			
 			ret = random.choice(alltips)
