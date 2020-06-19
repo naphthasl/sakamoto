@@ -10,7 +10,7 @@ Plus, the default UI theme looks cool!
 
 __author__ = 'Naphtha Nepanthez'
 __version__ = 'RBMK-1000'
-__license__ = 'MIT'
+__license__ = 'AGPL-v3.0' # SEE LICENSE FILE
 
 # TODO: B e c o m e   s t a b l e .
 # No, seriously. Versions beginning with RBMK could explode at any moment.
