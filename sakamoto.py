@@ -133,7 +133,10 @@ class InternalOptions(MutableMapping):
 	def __len__(self):
 		return len(self.mapping)
 	def __repr__(self):
-		return f"{type(self).__name__}({self.mapping})"
+		return '{0}({1})'.format(
+			type(self).__name__,
+			self.mapping
+		)
 
 OPTIONS = InternalOptions()
 
