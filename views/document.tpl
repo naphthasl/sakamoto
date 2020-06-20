@@ -1,5 +1,6 @@
 <%
 from datetime import datetime
+import base64
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@ from datetime import datetime
 			</div>
 		<% end %>
 		
-		<div class="markdown" id="markdown" style="display: none;">{{markdown}}</div>
+		<pre class="markdown" id="markdown" style="display: none;">{{base64.b64encode(markdown.encode()).decode()}}</pre>
 		<div class="content" id="content"></div>
 		
 		<% if not (comments == None): %>
@@ -76,7 +77,7 @@ from datetime import datetime
 		<script type="text/javascript" src="../static/marked/marked.min.js"></script>
 		<script type="text/javascript">
 			window.onload = function() {
-				document.getElementById('content').innerHTML = marked(document.getElementById('markdown').innerHTML);
+				document.getElementById('content').innerHTML = marked(atob(document.getElementById('markdown').innerHTML));
 				document.getElementById('markdown').remove();
 			}
 		</script>

@@ -194,6 +194,10 @@ table tr {
 	padding: 4px;
 }
 
+.editor {
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
 .icon {
 	display: inline-block;
 	
