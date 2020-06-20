@@ -68,22 +68,20 @@ from datetime import datetime
 			</div>
 		<% end %>
 		
-		<script type="text/javascript" src="../static/marked.min.js"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+			crossorigin="anonymous"></script>
+
+		<script type="text/javascript" src="../static/marked/marked.min.js"></script>
 		<script type="text/javascript">
 			window.onload = function() {
 				document.getElementById('content').innerHTML = marked(document.getElementById('markdown').innerHTML);
 				document.getElementById('markdown').remove();
-				
-				/*
-					document.getElementById('content').querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(function(node) {
-						node.id = node.innerHTML.toLowerCase();
-					});
-				*/
 			}
 		</script>
 		
 		<script type="text/javascript" src="../static/shared_document.js"></script>
-		<script type="text/javascript" src="../static/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" src="../static/jdenticon@2.2.0.js"></script>
+		<script type="text/javascript" src="../static/jdenticon/dist/jdenticon.min.js"></script>
 	</body>
 </html>
