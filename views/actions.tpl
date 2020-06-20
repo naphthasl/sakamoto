@@ -39,7 +39,7 @@
 					</div>
 				</td>
 					
-				<td>
+				<td id="tiptd">
 					<div class="tip">
 						<p>{{!tip}}</p>
 					</div>

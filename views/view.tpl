@@ -162,10 +162,10 @@
 	</head>
 	<frameset rows="64px,*" border=0 frameborder=0 framespacing=0>
 		<frame id="navbar" name="navbar" src="./navbar" noresize />
-		<frameset cols="240px,740px,*" class="sep" border=0 frameborder=0 framespacing=0>
+		<frameset cols="240px,*" class="sep" border=0 frameborder=0 framespacing=0> <!-- 240px,740px,* -->
 			<frame id="menu"    name="menu"    src="./menu" noresize />
 			<frame id="content" name="content" src="{{content}}" noresize />
-			<frame id="filler"  name="filler"  src="about:blank" noresize />
+			<!--<frame id="filler"  name="filler"  src="about:blank" noresize />-->
 		</frameset>
 		<noframes>
 			<p>Your browser does not support framesets. Considering the current only alternative to framesets is an extremely buggy JavaScript library (wait, isn't that all JavaScript libraries?), you just won't be able to access this page.</p>

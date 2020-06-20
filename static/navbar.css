@@ -15,7 +15,7 @@ body {
 	top: 0;
 	left: 0;
 	
-	width: 982px;
+	width: calc(100% - 16px); /* 982px */
 }
 
 .line-continuation {
