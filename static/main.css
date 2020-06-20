@@ -63,6 +63,8 @@ table tr {
 	padding: 4px;
 
 	box-sizing: border-box;
+
+	max-width: 480px;
 }
 
 .error p, .tip p {

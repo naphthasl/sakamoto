@@ -68,10 +68,10 @@ from datetime import datetime
 			</div>
 		<% end %>
 		
-		<script type="text/javascript" src="../static/markdown-it.min.js"></script>
+		<script type="text/javascript" src="../static/marked.min.js"></script>
 		<script type="text/javascript">
 			window.onload = function() {
-				document.getElementById('content').innerHTML = window.markdownit().render(document.getElementById('markdown').innerHTML);
+				document.getElementById('content').innerHTML = marked(document.getElementById('markdown').innerHTML);
 				document.getElementById('markdown').remove();
 				
 				/*
