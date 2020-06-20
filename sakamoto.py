@@ -932,6 +932,14 @@ def filesget(id):
 	return io.BytesIO(rfile.content)
 
 # GENERIC
+@app.get('/help')
+def dochelp():
+	# TODO: Actually add internal documentation - some sort of quickstart
+	# guide so people can figure out how to use Sakamoto for their own site
+	# quickly.
+
+	errorout('./', 'Internal documentation unfinished.')
+
 @app.get('/fullreload')
 def fullreload():
 	return template('redirect', redirect = './reload')

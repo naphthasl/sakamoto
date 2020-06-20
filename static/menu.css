@@ -60,17 +60,14 @@ html {
 }
 
 .sect-default-ul li a {
-	display: flex;
+	display: block;
 
 	text-decoration: none;
 	color: #0000a0;
 	
 	box-sizing: border-box;
 	
-	align-items: center;
-	
-	padding-top: 4px;
-	padding-left: 4px;
+	padding: 2px;
 	
 	width: 100%;
 }

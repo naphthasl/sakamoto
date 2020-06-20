@@ -15,10 +15,11 @@
 				<h3>Site Management</h3>
 				<div class="sect-content">
 					<ul class="sect-default-ul">
-						<li><a href="./actions/-1">Root Actions</a></li>
-						<li><a href="./options"   >Site-Wide Options</a></li>
-						<li><a href="./files"     >Manage Static Files</a></li>
-						<li><a href="./credits"   >Credits</a></li>
+						<li><a href="./help"      ><span class="icon icon-book  "></span> Help</a></li>
+						<li><a href="./actions/-1"><span class="icon icon-home  "></span> Root Actions</a></li>
+						<li><a href="./options"   ><span class="icon icon-cog   "></span> Site-Wide Options</a></li>
+						<li><a href="./files"     ><span class="icon icon-folder"></span> Manage Static Files</a></li>
+						<li><a href="./credits"   ><span class="icon icon-user  "></span> Credits</a></li>
 					</ul>
 				</div>
 			</div>
