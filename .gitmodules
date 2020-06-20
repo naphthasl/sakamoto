@@ -1,0 +1,9 @@
+[submodule "static/ace"]
+	path = static/ace
+	url = https://github.com/ajaxorg/ace-builds
+[submodule "static/marked"]
+	path = static/marked
+	url = https://github.com/markedjs/marked
+[submodule "static/jdenticon"]
+	path = static/jdenticon
+	url = https://github.com/dmester/jdenticon
