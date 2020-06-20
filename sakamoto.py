@@ -242,7 +242,36 @@ def user_details(token: str):
 		'admin': user.admin,
 		'token': old
 	}
+
+@db_session
+def get_page_parents(id: int):
+	parents = []
+
+	while id != -1:
+		id = Page.get(id = id).parent
+		parents.append(id)
+
+	return list(reversed(parents))
+
+@db_session
+def breadcrumb_data():
+	document_breadcrumbs = {}
+	for x in select(p for p in Page):
+		document_breadcrumbs[x.id] = []
+
+		for y in get_page_parents(x.id):
+			document_breadcrumbs[x.id].append({
+				'url': './document/{0}'.format(y),
+				'name': Page.get(id = y).name
+			})
+
+		document_breadcrumbs[x.id].append({
+			'url': './document/{0}'.format(x.id),
+			'name': x.name
+		})
 	
+	return document_breadcrumbs
+
 def errorout(navback: str, error: str):
 	# This is used to allow an error to be thrown at any route level
 
@@ -931,6 +960,11 @@ def filesget(id):
 	
 	return io.BytesIO(rfile.content)
 
+# JSON API
+@app.get('/breadcrumbs')
+def breadcrumbs():
+	return breadcrumb_data()
+
 # GENERIC
 @app.get('/help')
 def dochelp():
@@ -972,6 +1006,9 @@ def credits():
 @app.get('/')
 @db_session
 def home():
+	# TODO: Find some way to make token and captcha cleanup faster on larger
+	# sites.
+
 	for x in (
 			select(p for p in Token if (time.time() - p.created) > 604800)[:]
 			+ select(p for p in Captcha if (time.time() - p.created) > 3600)[:]
@@ -980,7 +1017,7 @@ def home():
 		x.delete()
 
 	commit()
-		
+
 	if request.query.ref:
 		content = request.query.ref
 	elif request.query.doc:

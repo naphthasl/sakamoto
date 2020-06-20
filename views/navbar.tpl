@@ -15,9 +15,7 @@
 			
 			<div class="bar-bottom"></div>
 			<div class="bar-bottom-breadcrumb">
-				<ul>
-					<li><a href="./document/-1"><span class="icon icon-small icon-home"></span> home</a></li>
-				</ul>
+				<ul id="breadcrumb-menu"></ul>
 			</div>
 			
 			<div class="bar-user">
