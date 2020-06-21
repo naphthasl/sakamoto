@@ -1,3 +1,8 @@
+<%
+def str_trunc(data: str, maxlen: int = 24):
+	return (data[:maxlen] + '...') if len(data) > maxlen else data
+end
+%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,7 +24,7 @@
 				<td>
 					<div class="actions">
 						<ul>
-							<li class="listhead">Actions for {{pageprops['name']}} <code>{{dobject}}</code></li>
+							<li class="listhead">Actions for {{str_trunc(pageprops['name'])}} <code>{{dobject}}</code></li>
 							<li><a href="../action/{{dobject}}?type=child" target="menu"                >New child</a></li>
 							<li><a href="../action/{{dobject}}?type=edit"                               >Edit</a></li>
 							<li><a href="../document/{{dobject}}"                                       >View</a></li>
