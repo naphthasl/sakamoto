@@ -41,21 +41,38 @@ end
 			<% for k, v in filelist.items(): %>
 				<tr>
 					<td>{{k}}</td>
-					<td><a class="filelink" href="./files/{{k}}" target="_top">unset</a></td>
+					<td><a class="filelink" href="./files/{{k}}" id="file-{{k}}-link" target="_top">unset</a></td>
 					<td>{{v['original']}}</td>
 					<td>{{sizeof_fmt(v['length'])}}</td>
 					<td>{{datetime.utcfromtimestamp(v['created']).strftime('%Y-%m-%d %H:%M:%S')}} UTC</td>
 					<td style="text-align: center;">
-						<a href="./files?action=delete&amp;id={{k}}" class="fileaction"><span class="icon icon-cross"></span></a>
+						<a href="./files?action=delete&amp;id={{k}}" class="fileaction"><span class="icon icon-cross"></span></a> 
+						<a href="./files/{{k}}" class="fileaction"><span class="icon icon-eye"></span></a> 
+						<a href="#" onclick="copy('file-{{k}}-link');" class="fileaction"><span class="icon icon-paperclip"></span></a>
 					</td>
 				</tr>
 			<% end %>
 		 </table>
 		 
 		 <script type="text/javascript">
-			 document.querySelectorAll('.filelink').forEach(function(node) {
-				 node.innerHTML = node.href;
-			 });
+			document.querySelectorAll('.filelink').forEach(function(node) {
+				node.innerHTML = node.href;
+			});
+
+			function copy(id) {
+				var text = document.getElementById(id);
+				var range = document.createRange();
+				var selection = window.getSelection();
+
+				range.selectNodeContents(text);
+
+				selection.removeAllRanges();
+				selection.addRange(range);
+
+				document.execCommand('copy');
+
+				selection.removeAllRanges();
+			}
 		 </script>
 		 
 		 <script type="text/javascript" src="./static/shared_document.js"></script>
