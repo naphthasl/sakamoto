@@ -40,18 +40,17 @@ import base64
 					<% end %>
 				</div>
 				
-				<ul>
-					<% for k, v in comments.items(): %>
-						<li>
-							<span class="date">{{datetime.utcfromtimestamp(v['created']).strftime('%Y-%m-%d %H:%M:%S')}} UTC</span> 
-							<span class="author">{{v['author']}}</span> 
-							<span class="message">{{v['content']}}</span>
-							<% if (user['name'] == v['author']) or user['admin']: %>
-								<span class="decomment"><a href="?decomment={{k}}" target="_self">Delete</a></span>
-							<% end %>
-						</li>
-					<% end %>
-				</ul>
+				<% for k, v in comments.items(): %>
+					<div class="individual-comment">
+						<span class="author">{{v['author']}}</span> 
+						<span class="date">{{datetime.utcfromtimestamp(v['created']).strftime('%Y-%m-%d %H:%M:%S')}} UTC</span>
+						<br>
+						<span class="message">{{v['content']}}</span>
+						<% if (user['name'] == v['author']) or user['admin']: %>
+							<span class="decomment"><a href="?decomment={{k}}" target="_self">Delete</a></span>
+						<% end %>
+					</div>
+			 	<% end %>
 				
 				<div class="pages">
 					<ul>

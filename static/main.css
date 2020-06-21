@@ -257,3 +257,19 @@ table tr {
 #tiptd {
 	width: 100%;
 }
+
+.author {
+	font-weight: bold;
+}
+
+.date {
+	color: #808080;
+}
+
+.individual-comment {
+	padding: 6px;
+}
+
+.individual-comment:hover {
+	background-color: #f0f0f0;
+}
