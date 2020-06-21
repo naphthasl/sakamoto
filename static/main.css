@@ -326,6 +326,8 @@ table tr {
 	border: 1px solid black;
 
 	background-color: #f0f4ff;
+
+	box-sizing: border-box;
 }
 
 .pages ul li {

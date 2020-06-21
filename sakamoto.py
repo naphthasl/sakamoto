@@ -28,6 +28,9 @@ from bottle import Bottle, run, request, response
 from bottle import redirect, abort, template, static_file
 from pony.orm import *
 from datetime import datetime
+from pathlib import Path
+from operator import is_not
+from functools import partial
 
 acceptable_username_set = set(
 	string.ascii_lowercase
@@ -39,6 +42,18 @@ captchaobject = ImageCaptcha(
 	width = 160,
 	height = 60
 )
+
+icons = {}
+for x in filter(partial(is_not, None), map(
+	(lambda x: x if 'image/' in mimetypes.guess_type(
+		x, strict = False
+	)[0] else None),
+	list(Path("./static/icons").rglob("*.*")))):
+
+	icons[str(x)] = 'data:{0};charset=utf-8;base64,{1}'.format(
+		mimetypes.guess_type(x, strict = False)[0],
+		base64.b64encode(open(x, 'rb').read()).decode()
+	)
 
 db = Database()
 
@@ -601,10 +616,10 @@ def actionstep(dobject: int):
 				)
 			elif request.query.type == 'chicon':
 				return template(
-					'rename',
+					'iconpicker',
+					icons   = icons,
+					name    = pg.name,
 					dobject = dobject,
-					type    = 'chicon',
-					hint    = 'New Icon',
 					default = pg.icon
 				)
 			elif request.query.type == 'delete':
