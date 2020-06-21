@@ -1,6 +1,7 @@
 <%
 from datetime import datetime
 import base64
+import xxhash
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,17 @@ import base64
 				<div class="comment-form">
 					<% if user['login'] == True: %>
 						<form action="./{{id}}" method="POST" target="_self" id="comment-form-inner" class="comment-form-inner">
-							<label for="input">Leave a comment:</label><br />
-							<textarea form="comment-form-inner" id="input" name="input"></textarea><br />
-							
-							<input type="hidden" id="type" name="type" value="comment" />
-							<input type="submit" id="submit" name="submit" value="Submit" />
+							<table>
+								<tr>
+									<td id="commenttd">
+										<textarea form="comment-form-inner" id="input" name="input" rows="1" placeholder="Leave a comment..."></textarea>
+									</td>
+									<td>
+										<input type="hidden" id="type" name="type" value="comment" />
+										<input type="submit" id="submit" name="submit" value="Submit" />
+									</td>
+								</tr>
+							</table>
 						</form> 
 					<% else: %>
 						<p>Log in or register to post a comment.</p>
@@ -42,15 +49,20 @@ import base64
 				
 				<% for k, v in comments.items(): %>
 					<div class="individual-comment">
-						<span class="author">{{v['author']}}</span> 
-						<span class="date">{{datetime.utcfromtimestamp(v['created']).strftime('%Y-%m-%d %H:%M:%S')}} UTC</span>
-						<br>
-						<span class="message">{{v['content']}}</span>
+						<svg class="avatar" width="32" height="32" data-jdenticon-value="{{xxhash.xxh64(v['author'].encode()).hexdigest()}}"></svg>
+
+						<div class="comment-text">
+							<span class="author">{{v['author']}}</span> 
+							<span class="date">{{datetime.utcfromtimestamp(v['created']).strftime('%Y-%m-%d %H:%M:%S')}} UTC</span>
+							<br />
+							<span class="message">{{v['content']}}</span>
+						</div>
+
 						<% if (user['name'] == v['author']) or user['admin']: %>
-							<span class="decomment"><a href="?decomment={{k}}" target="_self">Delete</a></span>
+							<span class="decomment"><a href="?decomment={{k}}" target="_self"><span class="icon icon-cross"></span></a></span>
 						<% end %>
 					</div>
-			 	<% end %>
+				<% end %>
 				
 				<div class="pages">
 					<ul>
@@ -58,7 +70,7 @@ import base64
 							if pages > 1:
 								for x in range(pages):
 						%>
-									<li><a href="?page={{x}}" target="_self">{{x}}</a></li>
+									<li class="pagelink{{' selected' if x == int(page) else ''}}"><a href="?page={{x}}" target="_self">{{x}}</a></li>
 						<%
 								end
 							end
@@ -73,12 +85,15 @@ import base64
 			integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
 			crossorigin="anonymous"></script>
 
+		<script type="text/javascript" src="../static/autosize/dist/autosize.min.js"></script>
 		<script type="text/javascript" src="../static/marked/marked.min.js"></script>
 		<script type="text/javascript">
-			window.onload = function() {
+			window.addEventListener('load', function() {
 				document.getElementById('content').innerHTML = marked(atob(document.getElementById('markdown').innerHTML));
 				document.getElementById('markdown').remove();
-			}
+
+				autosize(document.querySelector('.comment-form-inner #input'));
+			}, false);
 		</script>
 		
 		<script type="text/javascript" src="../static/shared_document.js"></script>

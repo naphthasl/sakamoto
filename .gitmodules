@@ -7,3 +7,6 @@
 [submodule "static/simplemde"]
 	path = static/simplemde
 	url = https://github.com/sparksuite/simplemde-markdown-editor
+[submodule "static/autosize"]
+	path = static/autosize
+	url = https://github.com/jackmoore/autosize

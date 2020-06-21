@@ -85,7 +85,7 @@
 				var content_breadcrumb = document.getElementById('navbar').contentDocument.getElementById('breadcrumb-menu');
 
 				if (contents == null) {
-					contents = []
+					contents = [];
 
 					/*
 					// THIS IS HORRIBLE, AN ACTUAL NIGHTMARE!
@@ -104,7 +104,7 @@
 					});
 					*/
 				} else {
-					contents = contents[content_location.split('/').pop()]
+					contents = contents[content_location.split('/').pop().split('?').shift()];
 				}
 
 				content_breadcrumb.innerHTML = '';
@@ -128,7 +128,7 @@
 					var location = content.contentWindow.location.href;
 					
 					if (location.includes('document')) {
-						documentid = location.split('/').pop()
+						documentid = location.split('/').pop().split('?').shift();
 
 						if (history.pushState) {
 							history.pushState({}, null, '?doc=' + documentid);

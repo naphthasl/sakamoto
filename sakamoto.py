@@ -436,8 +436,9 @@ def document(id):
 					redirect='../?ref='+content['link']
 				)
 		else:
+			page = int(request.query.page or 0)
+
 			if OPTIONS['allow_comments']:
-				page = int(request.query.page or 0)
 				
 				dbcomments = select(
 					p for p in Comment if p.parent == id
@@ -463,6 +464,7 @@ def document(id):
 				index    = None,
 				comments = comments,
 				pages    = pages,
+				page     = page,
 				user     = user_details(request.get_cookie("token"))
 			)
 	else:
@@ -480,8 +482,14 @@ def do_document(id):
 	ACT = request.forms.get('type')
 		
 	if ACT == 'comment' and OPTIONS['allow_comments']:
-		if not request.forms.get('input').strip():
-			errorout('../', 'You can\'t comment nothing.')
+		if ((not request.forms.get('input').strip())
+			or (len(request.forms.get('input')) > 2048)):
+
+			errorout(
+				'../',
+				'You can\'t comment nothing, and you can\'t post more than '
+				+ '2048 characters.'
+			)
 		
 		Comment(
 			parent  = id,
