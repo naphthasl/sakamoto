@@ -31,6 +31,7 @@ from datetime import datetime
 from pathlib import Path
 from operator import is_not
 from functools import partial
+from PIL import Image
 
 acceptable_username_set = set(
 	string.ascii_lowercase
@@ -43,6 +44,17 @@ captchaobject = ImageCaptcha(
 	height = 60
 )
 
+def image_destroyer(im):
+	im = im.convert('RGBA')
+	r, g, b, a = im.split()
+
+	a = a.point(lambda i: round(i / 255) * 255)
+
+	im = Image.merge('RGBA', (r, g, b, a))
+	im = im.convert('P', colors = 16, dither = None).convert('RGBA')
+
+	return im
+
 icons = {}
 for x in filter(partial(is_not, None), map(
 	(lambda x: x if 'image/' in mimetypes.guess_type(
@@ -50,9 +62,16 @@ for x in filter(partial(is_not, None), map(
 	)[0] else None),
 	list(Path("./static/icons").rglob("*.*")))):
 
+	im = Image.open(x)
+	byteim = io.BytesIO()
+	im = image_destroyer(im.resize((16, 16)))
+
+	im.save(byteim, "PNG")
+	byteim.seek(0)
+
 	icons[str(x)] = 'data:{0};charset=utf-8;base64,{1}'.format(
-		mimetypes.guess_type(x, strict = False)[0],
-		base64.b64encode(open(x, 'rb').read()).decode()
+		'image/png',
+		base64.b64encode(byteim.read()).decode()
 	)
 
 db = Database()
