@@ -194,8 +194,10 @@ table tr {
 	padding: 4px;
 }
 
-.editor {
+.editor .CodeMirror {
 	font-family: "Lucida Console", Monaco, monospace;
+
+	height: 550px;
 }
 
 .icon {

@@ -32,7 +32,9 @@ end
 		
 		<script type="text/javascript" src="../static/simplemde/dist/simplemde.min.js"></script>
 		<script type="text/javascript">
-			var simplemde = new SimpleMDE({ element: document.getElementById("markdown") });
+			var simplemde = new SimpleMDE({
+				element: document.getElementById("markdown")
+			});
 		</script>
 		
 		<script type="text/javascript" src="../static/shared_document.js"></script>
