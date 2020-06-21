@@ -111,6 +111,7 @@ html {
 
 .menu li .actions {
 	position: absolute;
+	top: 0px;
 	right: 0px;
 	
 	color: transparent;
@@ -127,6 +128,7 @@ html {
 
 .menu li .id {
 	position: absolute;
+	top: 0px;
 	right: 18px;
 	
 	width: 32px;
