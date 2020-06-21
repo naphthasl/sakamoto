@@ -258,11 +258,11 @@ table tr {
 	width: 100%;
 }
 
-.author {
+.individual-comment .author {
 	font-weight: bold;
 }
 
-.date {
+.individual-comment .date {
 	color: #808080;
 }
 
