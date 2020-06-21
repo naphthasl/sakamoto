@@ -603,7 +603,7 @@ def actionstep(dobject: int):
 		
 		Page(
 			name     = 'New Menu Object',
-			icon     = './static/icons/tango/mimetypes/text-x-generic.png',
+			icon     = 'static/icons/tango/mimetypes/text-x-generic.png',
 			position = new_position,
 			disabled = True,
 			index    = False,
