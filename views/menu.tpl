@@ -19,7 +19,6 @@
 						<li><a href="./actions/-1"><span class="icon icon-home  "></span> Root Actions</a></li>
 						<li><a href="./options"   ><span class="icon icon-cog   "></span> Site-Wide Options</a></li>
 						<li><a href="./files"     ><span class="icon icon-folder"></span> Manage Static Files</a></li>
-						<li><a href="./credits"   ><span class="icon icon-user  "></span> Credits</a></li>
 					</ul>
 				</div>
 			</div>
