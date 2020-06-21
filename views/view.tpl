@@ -71,7 +71,7 @@
 			function menuLinkCheck() {
 				document.getElementById('menu').contentDocument.querySelectorAll('a').forEach(function(node) {
 					if (!node.className.split(' ').includes('auto')) {
-						if (node.href == document.getElementById('content').contentWindow.location.href) {
+						if (node.href == document.getElementById('content').contentWindow.location.href.split('?').shift()) {
 							node.style.fontWeight = 'bold';
 						} else {
 							node.style.fontWeight = 'normal';
