@@ -72,26 +72,38 @@
 			
 			document.querySelectorAll('.menu-index .ul-root li').forEach(function x(node) {
 				if (node.querySelectorAll('ul').length > 0) {
-					node.innerHTML = '<a class="tree-collapse" href="#" target="_self" onclick="toggleLPHidden(this.parentNode.querySelector(\'ul\')); toggleExpandClass(this);"></a>' + node.innerHTML;
+					node.querySelector('.menutext').innerHTML = '<a class="tree-collapse" href="#" target="_self" onclick="toggleLPHidden(this.parentNode.parentNode.querySelector(\'ul\')); toggleExpandClass(this);"></a>' + node.querySelector('.menutext').innerHTML;
 					
 					var cul = node.querySelector('ul');
 					cul.innerHTML = '<div class="tree-mids-coverup"><div class="tree-mids"></div><div class="tree-mids-final"></div></div>' + cul.innerHTML;
 					
 					recomputeCoverupHeights(node);
 				} else {
-					node.innerHTML = '<span class="tree-passthrough"></span>' + node.innerHTML;
+					node.querySelector('.menutext').innerHTML = '<span class="tree-passthrough"></span>' + node.querySelector('.menutext').innerHTML;
 				}
 				
 				node.querySelectorAll('ul > li').forEach(x);
 				
 				var lies = node.querySelectorAll('ul > li');
 				lies.forEach(function(subnode, index) {
-					subnode.innerHTML = '<span class="tree-mid"></span>' + subnode.innerHTML;
+					if (!subnode.querySelector('.menutext').innerHTML.includes('tree-mid')) {
+						subnode.querySelector('.menutext').innerHTML = '<span class="tree-mid"></span>' + subnode.querySelector('.menutext').innerHTML;
+					}
 				});
 			});
 			
 			document.querySelectorAll('.menu-index .tree-pre-collapsed .tree-collapse').forEach(function(node) {
 				node.click();
+			});
+
+			document.querySelectorAll('.menu-index ul li .menutext').forEach(function(node) {
+				node.addEventListener("mouseover", function() {
+					this.parentNode.getElementsByClassName('adminopt')[0].style.display = 'block';
+				});
+
+				node.addEventListener("mouseout", function() {
+					this.parentNode.getElementsByClassName('adminopt')[0].style.display = 'none';
+				});
 			});
 		</script>
 		<script type="text/javascript" src="./static/shared_document.js"></script>

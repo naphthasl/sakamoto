@@ -170,7 +170,10 @@ html {
 .menu-index .tree-mid {
 	background: url('./builtins.png') -96px -96px no-repeat;
 	
-	margin-left: -16px;
+	/*margin-left: -16px;*/
+
+	position: absolute;
+	left: -16px;
 }
 
 .menu-index .tree-final {
@@ -207,4 +210,24 @@ html {
 	left: 0;
 	width: 16px;
 	height: 100%;
+}
+
+.menu-index .adminopt {
+	display: none;
+}
+
+.menu-index .menutext {
+	display: block;
+
+	min-height: 16px;
+
+	box-sizing: border-box;
+}
+
+.tree-passthrough, .tree-collapse, .tree-hidden, .menu-index li img {
+	float: left;
+}
+
+.menu-index .act {
+	margin-left: 32px;
 }

@@ -378,9 +378,9 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 
 			actions = (
 				lambda: (
-					'<span class="id">{0}</span>'
+					'<div class="adminopt"><span class="id">{0}</span>'
 					+ '<a class="actions" href="{1}actions/{0}" '
-					+ 'target="content">Actions</a>'
+					+ 'target="content">Actions</a></div>'
 				).format(
 					p.id,
 					root
@@ -392,17 +392,18 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 			)()
 
 			if p.disabled:
-				layout += '<li{3}>{0} {1} {2}'.format(
-					icon,
-					html.escape(p.name),
-					actions,
-					dclass
-				)
+				layout += ('<li{3}><div class="menutext">{0} <div class="act">{1}'
+					+ '</div> {2}</div>').format(
+						icon,
+						html.escape(p.name),
+						actions,
+						dclass
+					)
 			else:
 				layout += (
-					'<li{5}>{0} '
-					+ '<a href="{4}document/{1}" target="content">{2}</a>'
-					+ ' {3}'
+					'<li{5}><div class="menutext">{0} <div class="act"><a '
+					+ 'href="{4}document/{1}" target="content">{2}</a></div>'
+					+ ' {3} </div>'
 				).format(
 					icon,
 					p.id,
