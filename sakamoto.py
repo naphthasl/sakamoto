@@ -21,8 +21,6 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 import bcrypt, time, base64, json, random, io, string, pickle, mimetypes
 import html, pytz, math, xxhash
 
-from captcha.audio import AudioCaptcha
-from captcha.image import ImageCaptcha
 from collections.abc import MutableMapping
 from bottle import Bottle, run, request, response
 from bottle import redirect, abort, template, static_file
@@ -31,17 +29,13 @@ from datetime import datetime
 from pathlib import Path
 from operator import is_not
 from functools import partial
+from claptcha import Claptcha
 from PIL import Image
 
 acceptable_username_set = set(
 	string.ascii_lowercase
 	+ string.digits
 	+ '_-@!?./+'
-)
-
-captchaobject = ImageCaptcha(
-	width = 160,
-	height = 60
 )
 
 def image_destroyer(im):
@@ -319,6 +313,29 @@ def errorout(navback: str, error: str):
 	)
 	
 @db_session
+def gen_captcha():
+	# NOTE: This causes an invalid pointer or segfault on some systems.
+	# See https://github.com/naphthasl/sakamoto/issues/7
+
+	code = ''.join([
+		str(random.choice(string.hexdigits)) for _ in range(6)
+	])
+
+	x = Captcha(
+		image   = Claptcha(
+			source = code,
+			font   = "./static/freemono/FreeMono.ttf",
+			noise  = 0.3
+		).bytes[1].read(),
+		code    = code,
+		created = round(time.time())
+	)
+
+	commit()
+	
+	return x.id
+
+@db_session
 def validate_captcha():
 	cid = request.forms.get('captchaid').strip()
 	try:
@@ -408,26 +425,6 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 		return '<ul{0}>\n'.format(
 			(lambda x: ' class="ul-root"' if x else '')(callroot)
 		) + layout + '</ul>\n'
-
-@db_session
-def gen_captcha():
-	# TODO: Find some way to stop this causing a pointer error.
-	# Some wacky fucking shit is up with the library that generates
-	# captchas for THAT to happen. Maybe I should make my own?
-
-	code = ''.join([
-		str(random.randint(0, 9)) for _ in range(4)
-	])
-
-	x = Captcha(
-		image   = captchaobject.generate(code).read(),
-		code    = code,
-		created = round(time.time())
-	)
-
-	commit()
-	
-	return x.id
 
 # DOCUMENTS
 @app.get('/document/<id:int>')
