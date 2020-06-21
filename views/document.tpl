@@ -43,7 +43,13 @@ import xxhash
 							</table>
 						</form> 
 					<% else: %>
-						<p>Log in or register to post a comment.</p>
+						<table>
+							<tr>
+								<td>
+									Log in or register to post a comment.
+								</td>
+							</tr>
+						</table>
 					<% end %>
 				</div>
 				
