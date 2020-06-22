@@ -816,15 +816,15 @@ def do_register():
 	password = request.forms.get('password')
 	username = request.forms.get('username').strip()
 	
-	if ((len(username) > 64)
-		or (len(password) > 256)
+	if ((len(username) > 24)
+		or (len(username) < 4)
+		or (len(password) > 128)
+		or (len(password) < 4)
 		or (not acceptable_username_set.issuperset(username))):
 
 		errorout(
 			'./',
-			'Usernames must be under 32 characters and contain only'
-			+ 'lowercase ASCII letters and numbers.'
-			+ 'Passwords must be under 256 characters.'
+			'Username or password does not conform to requirements.'
 		)
 	
 	if password != request.forms.get('password2'):
@@ -876,8 +876,8 @@ def newpassworddo():
 		abort(401, "Sorry, access denied.")
 		
 	password = request.forms.get('input')
-	if len(password) > 256:
-		errorout('./', 'Passwords must be under 256 characters.')
+	if len(password) > 128 or len(password) < 4:
+		errorout('./', 'Passwords must be under 128 characters.')
 		
 	user = User.get(name=user['name'])
 	user.auth = bcrypt.hashpw(
