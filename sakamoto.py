@@ -288,14 +288,18 @@ def breadcrumb_data():
 		document_breadcrumbs[x.id] = []
 
 		for y in get_page_parents(x.id):
+			npg = Page.get(id = y)
+
 			document_breadcrumbs[x.id].append({
 				'url': './document/{0}'.format(y),
-				'name': Page.get(id = y).name
+				'name': npg.name,
+				'disabled': npg.disabled
 			})
 
 		document_breadcrumbs[x.id].append({
 			'url': './document/{0}'.format(x.id),
-			'name': x.name
+			'name': x.name,
+			'disabled': x.disabled
 		})
 	
 	return document_breadcrumbs

@@ -113,6 +113,10 @@
 					var add_node = document.createElement("li");   
 					add_node.innerHTML = '<a href="{0}">{1}</a>'.format(node.url, text_truncate(node.name, 16, '...'));
 
+					if (node.disabled) {
+						add_node.querySelector('a').removeAttribute('href');
+					}
+
 					content_breadcrumb.appendChild(add_node);
 				});
 			}
