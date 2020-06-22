@@ -150,21 +150,21 @@ html {
 	width: 16px;
 	height: 16px;
 	
-	background: url('./builtins.png') -64px -96px no-repeat;
+	background: #f0f4f8 url('./builtins.png') -64px -96px no-repeat;
 	
 	color: transparent;
 }
 
 .menu-index .tree-hidden {
-	background: url('./builtins.png') -80px -96px no-repeat;
+	background: #f0f4f8 url('./builtins.png') -80px -96px no-repeat;
 }
 
 .menu-index .tree-passthrough {
-	background: url('./builtins.png') -112px -96px no-repeat;
+	background: #f0f4f8 url('./builtins.png') -112px -96px no-repeat;
 }
 
 .menu-index .tree-collapse .collapsed {
-	background: url('./builtins.png') -80px -96px no-repeat;
+	background: #f0f4f8 url('./builtins.png') -80px -96px no-repeat;
 }
 
 .menu-index .tree-mid {
@@ -222,6 +222,8 @@ html {
 	min-height: 16px;
 
 	box-sizing: border-box;
+
+	background: url('./tree-mid.png') repeat-y;
 }
 
 .tree-passthrough, .tree-collapse, .tree-hidden, .menu-index li img {
