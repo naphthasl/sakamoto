@@ -255,6 +255,7 @@ table tr {
 .icon.icon-megaphone     { background-position: -192px   -32px  ; }
 .icon.icon-folder        { background-position: -176px   -48px  ; }
 .icon.icon-book          { background-position: -224px   -16px  ; }
+.icon.icon-printer       { background-position: -128px   -80px  ; }
 
 #tiptd {
 	width: 100%;

@@ -12,12 +12,18 @@
 	<body>
 		<div class="width-restrictor">
 			<div class="sakamoto"></div>
-			
+
 			<div class="bar-bottom"></div>
 			<div class="bar-bottom-breadcrumb">
 				<ul id="breadcrumb-menu"></ul>
 			</div>
 			
+			<div class="bar-interact">
+				<div class="bar-interact-inner">
+					<a class="icon icon-printer" style="float: right;" href="#" onclick="window.parent.document.getElementById('content').contentWindow.print();" target="_self"></a>
+				</div>
+			</div>
+
 			<div class="bar-user">
 				<div class="u-corner">
 					<div class="u-corner-inner">
