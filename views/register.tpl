@@ -35,7 +35,7 @@
 							<input type="hidden" id="captchaid" name="captchaid" value="{{captcha}}" />
 						</div>
 					</td>
-					<td>Type out the 6-digit hexidecimal code shown on the left. This helps prevent automated submissions. As these images are automatically generated, there is a chance for them to potentially be unreadable for humans too. In the event that this happens, you can reload the page to get a new one.</td>
+					<td>Type out the text shown on the left. This helps prevent automated submissions. As these images are automatically generated, there is a chance for them to potentially be unreadable for humans too. In the event that this happens, you can reload the page to get a new one.</td>
 				</tr>
 				<tr>
 					<td colspan="3" style="text-align: center;"><input type="submit" id="submit" name="submit" value="Submit" /></td>
