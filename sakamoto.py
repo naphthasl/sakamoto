@@ -45,7 +45,7 @@ def image_destroyer(im):
 	a = a.point(lambda i: round(i / 255) * 255)
 
 	im = Image.merge('RGBA', (r, g, b, a))
-	im = im.convert('P', colors = 16, dither = None).convert('RGBA')
+	im = im.convert('P', colors = 32, dither = None).convert('RGBA')
 
 	return im
 

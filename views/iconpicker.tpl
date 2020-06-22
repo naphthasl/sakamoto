@@ -24,14 +24,14 @@ import base64
                         for k, v in sorted(list(icons.items()), key = (lambda x: x[0])):
                     %>
                             <a class="picon" href="#" data-location="{{k}}" onclick="document.getElementById('input').value = this.getAttribute('data-location'); updateSelection();">
-                                <img style="image-rendering: crisp-edges;" src="{{v}}" width="48px" height="48px"></img>
+                                <img style="image-rendering: crisp-edges;" src="{{v}}" width="32px" height="32px"></img>
                             </a>
                     <%
                         end
                     %>
                 </div>
                 <div class="footer">
-                    <input type="submit" id="submit" name="submit" value="Change Icon" />
+                    <input type="submit" id="submit" name="submit" value="Change Icon" /> (Current selection: <span id="selection-text" style="font-weight: bold;"></span>)
                     <input type="text" id="search" name="search" placeholder="Search for an icon..." style="float: right;" onchange="updateSearch();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
                 </div>
             </div>
@@ -57,6 +57,8 @@ import base64
                 document.querySelectorAll('.picker .icons a').forEach(function(node) {
                     if (node.getAttribute('data-location') == document.getElementById('input').value) {
                         node.classList.add('selected');
+
+                        document.getElementById('selection-text').innerHTML = node.getAttribute('data-location');
                     } else {
                         node.className = 'picon';
                     }
@@ -76,6 +78,8 @@ import base64
             window.addEventListener('load', function() {
                 updateSelection();
                 updateSearch();
+
+                document.querySelector('.picker .icons .picon.selected').scrollIntoView();
             }, false);
         </script>
 		<script type="text/javascript" src="../static/shared_document.js"></script>
