@@ -8,14 +8,16 @@
 		<link rel="stylesheet" href="../static/main.css" />
 	</head>
 	<body>
-		 <form action="./{{'password' if type == 'password' else 'do'}}" method="POST" id="rename" class="action">
-			<label for="input">{{hint}}:</label><br />
-			<input type="{{'password' if type == 'password' else 'text'}}" id="input" name="input" value="{{default}}" /><br />
-			
-			<input type="hidden" id="id" name="id" value="{{dobject}}" />
-			<input type="hidden" id="type" name="type" value="{{type}}" />
-			
-			<input type="submit" id="submit" name="submit" value="Submit" />
+		<form action="./{{'password' if type == 'password' else 'do'}}" method="POST" id="rename" class="action">
+			<table>
+				<tr>
+					<td><label for="input">{{hint}}</label></td>
+					<td><input type="{{'password' if type == 'password' else 'text'}}" id="input" name="input" value="{{default}}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;"><input type="submit" id="submit" name="submit" value="Submit" /></td>
+				</tr>
+			</table>
 		</form>
 		
 		<script type="text/javascript" src="../static/shared_document.js"></script>
