@@ -30,7 +30,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" id="submit" name="submit" value="Submit" /></td>
+					<td colspan="2" style="text-align: center;">
+						<input type="submit" id="submit" name="submit" value="Submit" />
+					</td>
 				</tr>
 			</table>
 		</form>
