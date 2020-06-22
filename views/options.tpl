@@ -1,4 +1,13 @@
-% import json
+<%
+import json, string, random
+
+type_conversions = {
+	str: 'text',
+	int: 'number',
+	float: 'number',
+	bool: 'checkbox'
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,13 +21,33 @@
 		<form action="./options" method="POST" id="options" class="options">
 			<table>
 				<% for k, v in items.items(): %>
+					<%
+						jkey = json.dumps(k)
+						jvalue = json.dumps(v)
+						jtype = type(v)
+						jid = ''.join([str(random.choice(string.hexdigits)) for _ in range(6)])
+
+						inputtype = type_conversions[jtype]
+					%>
 					<tr>
-						<td><label for="{{json.dumps(k)}}">{{json.dumps(k)}}</label></td>
-						<td><input type="text" id="{{json.dumps(k)}}" name="{{json.dumps(k)}}" value="{{json.dumps(v)}}" /></td>
+						<td><label for="{{jid}}">{{k}}</label></td>
+						<td>
+							<input type="hidden" id="{{jid}}" name="{{jkey}}" value="{{jvalue}}" />
+
+							<% if jtype in [str, int, float]: %>
+								<input type="{{inputtype}}" oninput="document.getElementById('{{jid}}').value = JSON.stringify(this.value);" value="{{v}}" />
+							<% elif jtype == bool: %>
+								<input type="{{inputtype}}" onchange="document.getElementById('{{jid}}').value = JSON.stringify(this.checked);"{{' checked' if v == True else ''}}></input>
+							<% else: %>
+								<script type="text/javascript">
+									document.getElementById('{{jid}}').type = 'text';
+								</script>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 				<tr>
-					<td colspan="2" style="text-align: center;"><input type="submit" id="submit" name="submit" value="Change Options" /></td>
+					<td colspan="2" style="text-align: center;"><input type="submit" value="Change Options" /></td>
 				</tr>
 			</table>
 		</form>

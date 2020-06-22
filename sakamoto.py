@@ -915,16 +915,20 @@ def do_register():
 	
 	for k, v in dict(request.forms).items():
 		try:
-			if k != 'submit':
-				if json.loads(k) in OPTIONS:
-					if type(json.loads(v)) != type(OPTIONS[json.loads(k)]):
-						errorout(
-							'./',
-							'JSON type mismatch error! Check the'
-							+ ' formatting and spelling of your input.'
-						)
-					
-					OPTIONS[json.loads(k)] = json.loads(v)
+			try:
+				_ = json.loads(k)
+			except json.decoder.JSONDecodeError:
+				continue
+
+			if json.loads(k) in OPTIONS:
+				if type(json.loads(v)) != type(OPTIONS[json.loads(k)]):
+					errorout(
+						'./',
+						'JSON type mismatch error! Check the'
+						+ ' formatting and spelling of your input.'
+					)
+				
+				OPTIONS[json.loads(k)] = json.loads(v)
 		except json.decoder.JSONDecodeError:
 			errorout(
 				'./',
