@@ -348,3 +348,9 @@ table tr {
 
 	color: #0000a0;
 }
+
+form input {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
