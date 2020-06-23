@@ -99,6 +99,12 @@ import xxhash
 				document.getElementById('markdown').remove();
 
 				autosize(document.querySelector('.comment-form-inner #input'));
+
+				document.querySelectorAll('#content a').forEach(function(node) {
+					if (node.getAttribute('href').startsWith('#')) {
+						node.target = '_self';
+					}
+				});
 			}, false);
 		</script>
 		
