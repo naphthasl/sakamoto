@@ -7,7 +7,7 @@ body {
 }
 
 html {
-	border-right: 1px solid #102030;
+	/* border-right: 1px solid #102030; */
 	
 	height: 100%;
 }
@@ -247,7 +247,7 @@ html {
 	box-sizing: border-box;
 
 	border-top: 1px solid #102030;
-	border-right: 1px solid #102030;
+	/*border-right: 1px solid #102030;*/
 
 	background: #d7d7d7;
 	text-align: center;
