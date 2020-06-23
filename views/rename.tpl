@@ -11,6 +11,9 @@
 		<form action="./{{'password' if type == 'password' else 'do'}}" method="POST" id="rename" class="action">
 			<table>
 				<tr>
+					<th class="tablehead" colspan="2">Rename</th>
+				</tr>
+				<tr>
 					<td><label for="input">{{hint}}</label></td>
 					<td><input type="{{'password' if type == 'password' else 'text'}}" id="input" name="input" value="{{default}}" /></td>
 				</tr>
