@@ -18,6 +18,9 @@
 					<td colspan="2" style="text-align: center;"><input type="submit" id="submit" name="submit" value="Submit" /></td>
 				</tr>
 			</table>
+
+			<input type="hidden" id="id" name="id" value="{{dobject}}" />
+			<input type="hidden" id="type" name="type" value="{{type}}" />
 		</form>
 		
 		<script type="text/javascript" src="../static/shared_document.js"></script>
