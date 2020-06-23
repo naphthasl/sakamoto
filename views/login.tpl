@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="./static/main.css" />
 	</head>
 	<body>
-		 <form action="./login" method="POST" id="login" class="login">
+		<form action="./login" method="POST" id="login" class="login">
 			<table>
 				<tr>
 					<td><label for="username">Username</label></td>

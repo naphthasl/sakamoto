@@ -201,3 +201,13 @@ body {
 .bar-user .user-buttons a:hover {
 	color: yellow;
 }
+
+form#search input {
+	height: 22px;
+	border: 1px inset;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: #b0c0d0;
+}

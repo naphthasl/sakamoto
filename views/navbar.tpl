@@ -22,6 +22,13 @@
 				<div class="bar-interact-inner">
 					<a class="icon icon-printer" style="float: right;" href="#" onclick="window.parent.document.getElementById('content').contentWindow.print();" target="_self"></a>
 				</div>
+
+				<div class="bar-interact-inner" style="width: auto;">
+					<form action="./search" id="search" method="post" target="content">
+						<input type="search" placeholder="Search..." name="q">
+						<input type="submit" value="Go">
+					</form>
+				</div>
 			</div>
 
 			<div class="bar-user">

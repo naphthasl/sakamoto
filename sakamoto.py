@@ -1013,6 +1013,31 @@ def filesget(id):
 def breadcrumbs():
 	return breadcrumb_data()
 
+# SEARCH
+@app.post('/search')
+@db_session
+def search():
+	squery = {}
+	iquery = request.forms.get('q').lower().strip()
+
+	if len(iquery) < 3:
+		errorout('./', 'Search query must be longer than 3 characters.')
+
+	for p in select(
+			p for p in Page if not (p.hidden or p.disabled)
+		):
+
+		contentload = json.loads(p.content)
+		contentsafe = contentload['markdown'] + contentload['link']
+		haystack = (p.name + p.icon + contentsafe).lower()
+		if iquery in (haystack):
+			squery[p.id] = {
+				'name': p.name,
+				'haystack': haystack
+			}
+
+	return template('search.tpl', squery = squery, iquery = iquery)
+
 # GENERIC
 @app.get('/help')
 def dochelp():
