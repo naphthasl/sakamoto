@@ -186,9 +186,9 @@ except KeyError:
 	OPTIONS['allow_comments'        ] = True
 	OPTIONS['dangerous_tips'        ] = False
 	OPTIONS['copyright_message'     ] = 'Copyright © {0} {1}. {2}.'.format(
-		datetime.now().year,  # CURRENT YEAR
-		'LotteLink',          # DEFAULT HOLDER
-		'All rights reserved' # DEFAULT RIGHTS
+		datetime.now().year,
+		'DEFAULT COPYRIGHT HOLDER',
+		'DEFAULT RIGHTS'
 	)
 
 tips = json.loads(open('./tips.json', 'r').read())
