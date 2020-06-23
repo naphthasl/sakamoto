@@ -7,7 +7,7 @@ body {
 }
 
 html {
-	border-right: 1px solid black;
+	border-right: 1px solid #102030;
 	
 	height: 100%;
 }
@@ -233,4 +233,23 @@ html {
 .menu-index .act {
 	padding-top: 2px;
 	margin-left: 34px;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+
+	width: 100%;
+
+	padding: 2px;
+
+	box-sizing: border-box;
+
+	border-top: 1px solid #102030;
+	border-right: 1px solid #102030;
+
+	background: #d7d7d7;
+	text-align: center;
+	font-size: 9px;
 }

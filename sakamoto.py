@@ -179,11 +179,17 @@ try:
 	OPTIONS['static_upload_max_size']
 	OPTIONS['allow_comments'        ]
 	OPTIONS['dangerous_tips'        ]
+	OPTIONS['copyright_message'     ]
 except KeyError:
 	OPTIONS['title'                 ] = 'Sakamoto'
 	OPTIONS['static_upload_max_size'] = 8388608
 	OPTIONS['allow_comments'        ] = True
 	OPTIONS['dangerous_tips'        ] = False
+	OPTIONS['copyright_message'     ] = 'Copyright © {0} {1}. {2}.'.format(
+		datetime.now().year,  # CURRENT YEAR
+		'LotteLink',          # DEFAULT HOLDER
+		'All rights reserved' # DEFAULT RIGHTS
+	)
 
 tips = json.loads(open('./tips.json', 'r').read())
 
@@ -550,7 +556,8 @@ def menu():
 		),
 		user       = user_details(
 			request.get_cookie("token")
-		)
+		),
+		options    = OPTIONS
 	)
 
 # ACTIONS

@@ -33,7 +33,14 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<div style="width: 100%;" id="footer-spacer"></div>
+
+		<div class="footer">
+			<p>{{options['copyright_message']}}</p>
+			<p>This website is powered by <a href="https://github.com/naphthasl/sakamoto">Sakamoto</a>, a content management system created by <a href="https://lotte.link">LotteLink</a>.</p>
+		</div>
+
 		<script type="text/javascript">
 			function toggleLPHidden(x) {
 				if (x.style.display === "none") {
@@ -106,6 +113,8 @@
 					this.parentNode.getElementsByClassName('adminopt')[0].style.display = 'none';
 				});
 			});
+
+			document.getElementById('footer-spacer').style.height = document.getElementsByClassName('footer')[0].scrollHeight + 'px';
 		</script>
 		<script type="text/javascript" src="./static/shared_document.js"></script>
 	</body>
