@@ -1045,12 +1045,32 @@ def search():
 
 	return template('search.tpl', squery = squery, iquery = iquery)
 
+# USER MANAGEMENT
+@app.get('/users')
+@db_session
+def userman():
+	check_admin()
+	cuser = user_details(request.get_cookie("token"))
+
+	if request.query.action == 'delete':
+		User.get(name = request.query.id).delete()
+		commit()
+	elif request.query.action == 'admin':
+		usro = User.get(name = request.query.id)
+		usro.admin = not usro.admin
+		commit()
+
+	users = select(p for p in User)[:]
+	ulist = list(map((lambda x: {
+		'name': x.name,
+		'admin': x.admin
+	}), users))
+
+	return template('userlist.tpl', ulist = ulist, cuser = cuser)
+
 # GENERIC
 @app.get('/help')
 def dochelp():
-	# TODO: Actually add internal documentation - some sort of quickstart
-	# guide so people can figure out how to use Sakamoto for their own site
-	# quickly.
 	check_admin()
 
 	return template('help.tpl')

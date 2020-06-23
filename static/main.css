@@ -146,13 +146,13 @@ table tr {
 	box-sizing: border-box;
 }
 
-.actions li .led {
+.led {
 	float: right;
 	
 	margin: 0;
 	padding: 0;
 	
-	background: url('./builtins.png') -192px -64px no-repeat;
+	background: transparent url('./builtins.png') -192px -64px no-repeat !important;
 	
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -161,11 +161,12 @@ table tr {
 	width: 15px;
 	height: 15px;
 
-	outline: none;
+	outline: none !important;
+	box-shadow: none !important;
 }
 
-.actions li .led:checked {
-	background: url('./builtins.png') -208px -64px no-repeat;
+.led:checked {
+	background: transparent url('./builtins.png') -208px -64px no-repeat !important;
 }
 
 .actions li a {
