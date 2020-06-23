@@ -30,13 +30,13 @@ end
 		</form> 
 		
 		 <table class="files">
-			<tr>
+			<tr class="tablehead" style="text-align: left;">
 				<th>File ID</th>
 				<th>File Address</th>
 				<th>Original Filename</th>
 				<th>File Size</th>
 				<th>File Upload Date</th>
-				<th>Actions</th>
+				<th style="text-align: center;">Actions</th>
 			</tr>
 			<% for k, v in filelist.items(): %>
 				<tr>

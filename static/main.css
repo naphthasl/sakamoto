@@ -30,13 +30,13 @@ table tr:nth-child(odd) td {
 }
 
 table tr td,th {
-	border: 1px solid black;
+	border: 1px solid white;
 	
 	padding: 2px;
 }
 
 table tr {
-	border: 1px solid black;
+	border: 1px solid white;
 }
 
 .fileupload {
@@ -44,7 +44,7 @@ table tr {
 	
 	width: 100%;
 	
-	border: 1px solid black;
+	border: 1px solid white;
 	
 	margin-bottom: 16px;
 	
@@ -106,7 +106,7 @@ table tr {
 	border-bottom: 1px solid black;
 }
 
-.actions .listhead {
+.actions .listhead, .tablehead {
 	position: relative;
 
 	background: url("bgv.png") repeat-x 0 0;
@@ -288,6 +288,8 @@ table tr {
 	position: relative;
 
 	padding: 6px;
+
+	border: 1px solid white;
 }
 
 .individual-comment:hover {
@@ -326,7 +328,7 @@ table tr {
 	margin: 0;
 	padding: 8px;
 
-	border: 1px solid black;
+	border: 1px solid white;
 
 	background-color: #f0f4ff;
 
