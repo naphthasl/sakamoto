@@ -5,6 +5,8 @@ body {
 
 	font-size: 12px;
 	font-weight: bold;
+
+	width: 100% !important;
 	
 	color: white;
 }
@@ -15,7 +17,10 @@ body {
 	top: 0;
 	left: 0;
 	
-	width: calc(100% - 32px); /* 982px */
+	width: calc(100% - 16px);
+	/* 982px */
+
+	max-width: 982px;
 }
 
 .line-continuation {

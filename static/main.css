@@ -9,6 +9,8 @@ body {
 	background-color: #fff;
 
 	color: #000;
+
+	max-width: 740px;
 }
 
 .actionmenu ul,.menu ul,.actions ul,.pages ul {
