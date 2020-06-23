@@ -36,7 +36,7 @@ end
 							<li><a href="../action/{{dobject}}?type=move&amp;direction=1" target="menu" >Move Down</a></li>
 							<li><a href="../action/{{dobject}}?type=parent"                             >New Parent</a></li>
 							<li><a href="../action/{{dobject}}?type=disabled"                           >Toggle Disabled <input class="led" type="checkbox" {{'checked' if pageprops['disabled'] else ''}} disabled> </a></li>
-							<li><a href="../action/{{dobject}}?type=index"                              >Toggle Index    <input class="led" type="checkbox" {{'checked' if pageprops['index'   ] else ''}} disabled> </a></li>
+							<li><a href="../action/{{dobject}}?type=index"                              >Toggle Collapsed<input class="led" type="checkbox" {{'checked' if pageprops['index'   ] else ''}} disabled> </a></li>
 							<li><a href="../action/{{dobject}}?type=hidden"                             >Toggle Hidden   <input class="led" type="checkbox" {{'checked' if pageprops['hidden'  ] else ''}} disabled> </a></li>
 							<li><a href="../action/{{dobject}}?type=etarget"                            >Toggle Target   <input class="led" type="checkbox" {{'checked' if pageprops['etarget' ] else ''}} disabled> </a></li>
 							<% end %>

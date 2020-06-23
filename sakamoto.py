@@ -1051,8 +1051,9 @@ def dochelp():
 	# TODO: Actually add internal documentation - some sort of quickstart
 	# guide so people can figure out how to use Sakamoto for their own site
 	# quickly.
+	check_admin()
 
-	errorout('./', 'Internal documentation unfinished.')
+	return template('help.tpl')
 
 @app.get('/fullreload')
 def fullreload():

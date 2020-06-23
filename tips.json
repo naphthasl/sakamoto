@@ -30,7 +30,7 @@
 	"actions": [
 		"Hidden pages can still be viewed via direct link, but won't be available in indexes or menus.",
 		"Disabled pages cannot be viewed directly unless you are an admin.",
-		"Enabling index mode will ensure that the menu object will be collapsed when it is first loaded into the menu (hiding its contents until they are clicked on)",
+		"Enabling collapsed mode will ensure that the menu object will be collapsed when it is first loaded into the menu (hiding its contents until they are clicked on)",
 		"Enabling \"Target Mode\" on a page will make external links open within the confines of Sakamoto's content frame, so you can embed content in Sakamoto without redirecting users away from the menu or navbar."
 	],
 	"register": [
