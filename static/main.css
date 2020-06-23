@@ -90,7 +90,7 @@ table tr {
 	
 	margin-bottom: 0;
 	
-	border-bottom: 0;
+	border: none;
 	
 	padding: 0;
 }
@@ -103,7 +103,7 @@ table tr {
 .actions li {
 	position: relative;
 
-	border-bottom: 1px solid black;
+	border-top: 1px solid white;
 }
 
 .actions .listhead, .tablehead {
@@ -293,7 +293,7 @@ table tr {
 }
 
 .individual-comment:hover {
-	background-color: #f0f0f0;
+	background-color: #f0f4ff;
 }
 
 .comments {
@@ -321,7 +321,7 @@ table tr {
 .pagelink.selected {
 	font-weight: bold;
 
-	border: 1px solid black;
+	text-decoration: underline;
 }
 
 .pages ul {
