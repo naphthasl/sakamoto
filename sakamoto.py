@@ -1077,12 +1077,6 @@ def navbar():
 		options = OPTIONS
 	)
 
-@app.get('/credits')
-def credits():
-	check_admin()
-
-	return template('credits')
-
 @app.get('/')
 @db_session
 def home():
