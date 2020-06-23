@@ -10,6 +10,9 @@
 	<body>
 		<form action="./login" method="POST" id="login" class="login">
 			<table>
+				<tr class="tablehead">
+					<th colspan="2">Log In</th>
+				</tr>
 				<tr>
 					<td><label for="username">Username</label></td>
 					<td><input type="text" id="username" name="username" /></td>

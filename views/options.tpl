@@ -20,6 +20,9 @@ type_conversions = {
 	<body>
 		<form action="./options" method="POST" id="options" class="options">
 			<table>
+				<tr class="tablehead">
+					<th colspan="2">Side-Wide Options</th>
+				</tr>
 				<% for k, v in items.items(): %>
 					<%
 						jkey = json.dumps(k)
