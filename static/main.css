@@ -94,18 +94,20 @@ table tr {
 }
 
 .actions {
-	background: #f0f4ff;
-	
+	border: none;
+}
+
+.actions ul {
 	border: 1px solid #102030;
+
+	background: #f0f4ff;
 
 	width: 360px;
 	
 	margin-bottom: 0;
 	
 	padding: 0;
-}
 
-.actions ul {
 	margin: 0;
 	padding: 0;
 }
