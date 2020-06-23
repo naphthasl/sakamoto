@@ -13,6 +13,10 @@ body {
 	max-width: 740px;
 }
 
+* {
+	overflow-wrap: break-word; /* Shouldn't this be the default? */
+}
+
 .actionmenu ul,.menu ul,.actions ul,.pages ul {
 	list-style-type: none;
 }
