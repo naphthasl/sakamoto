@@ -19,6 +19,7 @@
 						<li><a href="./actions/-1"><span class="icon icon-home"></span> Root Actions</a></li>
 						<li><a href="./options"><span class="icon icon-cog"></span> Site-Wide Options</a></li>
 						<li><a href="./files"><span class="icon icon-folder"></span> Manage Static Files</a></li>
+						<li><a href="./users"><span class="icon icon-edit-user"></span> Manage Users</a></li>
 						<li><a href="#" onclick="window.parent.document.getElementById('content').contentWindow.location.reload(true);" target="_self"><span class="icon icon-refresh"></span> Reload Content Frame</a></li>
 					</ul>
 				</div>
