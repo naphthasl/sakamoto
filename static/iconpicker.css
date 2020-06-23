@@ -6,6 +6,7 @@ body {
     position: fixed;
 
     width: 100%;
+    max-width: 740px;
     height: 100%;
 
     top: 0;
