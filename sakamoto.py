@@ -19,7 +19,7 @@ import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 import bcrypt, time, base64, json, random, io, string, pickle, mimetypes
-import html, pytz, math, xxhash
+import html, pytz, math, xxhash, toml
 
 from collections.abc import MutableMapping
 from bottle import Bottle, run, request, response

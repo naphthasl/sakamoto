@@ -137,3 +137,5 @@ dmypy.json
 *.db
 *.sqlite
 *.sqlite3
+*.toml
+*.config
