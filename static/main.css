@@ -18,7 +18,9 @@ body {
 table {
 	width: 100%;
 	
-	border-collapse: collapse;
+	border: 1px solid #102030;
+
+	/* border-collapse: collapse; */
 }
 
 table tr:nth-child(even) td {
@@ -30,7 +32,8 @@ table tr:nth-child(odd) td {
 }
 
 table tr td,th {
-	border: 1px solid white;
+	/* border: 1px solid white; */
+	border: 1px solid #708090;
 	
 	padding: 2px;
 }
@@ -86,11 +89,11 @@ table tr {
 .actions {
 	background: #f0f4ff;
 	
+	border: 1px solid #102030;
+
 	width: 360px;
 	
 	margin-bottom: 0;
-	
-	border: none;
 	
 	padding: 0;
 }
@@ -103,7 +106,9 @@ table tr {
 .actions li {
 	position: relative;
 
-	border-top: 1px solid white;
+	margin: 2px;
+
+	border: 1px solid #708090;
 }
 
 .actions .listhead, .tablehead {
