@@ -402,8 +402,8 @@ def recurse(pid: int = -2, admin: bool = False, callroot: bool = True):
 			)()
 
 			if p.disabled:
-				layout += ('<li{3}><div class="menutext">{0} <div class="act">{1}'
-					+ '</div> {2}</div>').format(
+				layout += ('<li{3}><div class="menutext">{0} '
+					+ '<div class="act">{1}</div> {2}</div>').format(
 						icon,
 						html.escape(p.name),
 						actions,
