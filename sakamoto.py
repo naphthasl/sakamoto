@@ -19,7 +19,7 @@ import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 import bcrypt, time, base64, json, random, io, string, pickle, mimetypes
-import html, pytz, math, xxhash, toml
+import html, pytz, math, xxhash, toml, argparse
 
 from collections.abc import MutableMapping
 from bottle import Bottle, run, request, response
@@ -214,7 +214,11 @@ app = Bottle()
 
 default_content = json.dumps({
 	'external': False,
-	'markdown': 'Hello world!',
+	'markdown': """
+		# This is the default content for a Sakamoto page.
+
+		See the "Help" link in the administrator menu to learn how to edit it.
+	""",
 	'link'    : '',
 })
 
@@ -1131,6 +1135,48 @@ def server_static(filepath):
 
 	return static_file(filepath, root='./static')
 
-# TODO: Add production use mode. Eventually. When you can
-# *actually* use the project in production.
-run(app, host='0.0.0.0', port=8080, reloader=True, debug=True)
+def main():
+	parser = argparse.ArgumentParser(
+		description = ('Sakamoto is a basic and somewhat adorable web content'
+		+ ' management system written in Python.')
+	)
+
+	parser.add_argument(
+		'-H', '--host',
+		type    = str,
+		default = '0.0.0.0',
+		help    = ('This is the IP that Sakamoto should be bound to.'
+		+ ' Defaults to 0.0.0.0.')
+	)
+
+	parser.add_argument(
+		'-P', '--port',
+		type    = int,
+		default = 8080,
+		help    = ('This is the port that Sakamoto should be bound to.'
+		+ ' Defaults to 8080.')
+	)
+
+	parser.add_argument(
+		'-w', '--wsgi',
+		type    = str,
+		default = 'gunicorn',
+		help    = ('Specifies what WSGI server to use.'
+		+ ' Defaults to gunicorn. bjoern has also been tested.')
+	)
+
+	parser.add_argument(
+		'-d', '--debug',
+		action = 'store_true',
+		help   = 'Enable debug mode and auto-reloader.'
+	)
+
+	args = parser.parse_args()
+
+	if args.debug:
+		run(app, host=args.host, port=args.port, reloader=True, debug=True)
+	else:
+		run(app, host=args.host, port=args.port, server=args.wsgi)
+
+if __name__ == '__main__':
+	main()
