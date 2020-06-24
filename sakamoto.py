@@ -19,7 +19,7 @@ import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 import bcrypt, time, base64, json, random, io, string, pickle, mimetypes
-import html, pytz, math, xxhash, toml, argparse
+import html, pytz, math, xxhash, toml, argparse, sys
 
 from collections.abc import MutableMapping
 from bottle import Bottle, run, request, response
@@ -31,6 +31,70 @@ from operator import is_not
 from functools import partial
 from claptcha import Claptcha
 from PIL import Image
+
+configfile_name = os.path.join(os.getcwd(), 'config.toml')
+try:
+	configfile = open(configfile_name, 'r').read()
+except FileNotFoundError:
+	configfile = """
+# This is the configuration file for Sakamoto.
+# -----------------------------------------------------------------------------
+# For improved scalability, you should configure a database server such as
+# MySQL or PostgreSQL here.
+# -----------------------------------------------------------------------------
+# Never share this file with anyone.
+
+{0}
+[default_admin_account]
+# This section is only ever used on first launch, and is used to define how
+# the admin account will initially be generated.
+username = "admin"
+password = "{1}"
+
+[database]
+# This section allows you to pick which database engine you intend to use.
+# The default is SQLite. The following engines are supported:
+# - sqlite
+# - mysql
+# - postgres
+engine = "sqlite"
+
+[database.file]
+# This section allows you to specify what file you would like to use for a
+# local database system such as SQLite.
+# You can even specify ":memory:" to use an in-memory database.
+# This section will be ignored if you use a remote database system, such as
+# MySQL or PostgreSQL.
+file = "sakamoto.db"
+
+[database.remote]
+# These are the connection details for a remote database. These fields are
+# required if you are using MySQL or PostgreSQL. They will be ignored if you
+# are using SQLite.
+host = ""
+username = ""
+password = ""
+schema = ""
+
+# Once you're done configuring Sakamoto through this file, you should change
+# the site-wide options from within Sakamoto itself. You'll probably want to
+# change things like the default copyright string, whether or not you want
+# comments to be made, etc. You'll also want to read the Help page in the
+# administrator menu too, as it will explain how to actually use Sakamoto.
+	""".format(toml.dumps({
+		'version': __version__
+	}), ''.join([random.choice(string.ascii_lowercase) for _ in range(16)]))
+
+	open(configfile_name, 'w').write(configfile)
+
+	print("""The default Sakamoto configuration file has been created in
+the current working directory. Please read and edit it before you
+continue, as you will need to configure the default admin account and
+the database options.""")
+
+	sys.exit()
+
+global_config = toml.loads(configfile)
 
 acceptable_username_set = set(
 	string.ascii_lowercase
@@ -116,11 +180,20 @@ class Comment(db.Entity):
 	content  = Required  (str)
 	created  = Required  (int)
 
-db.bind(
-	provider='sqlite',
-	filename='test.db',
-	create_db = True
-)
+if global_config['database']['engine'] == 'sqlite':
+	db.bind(
+		provider  = global_config['database']['engine'],
+		filename  = global_config['database']['file']['file'],
+		create_db = True
+	)
+else:
+	db.bind(
+		provider  = global_config['database']['engine'],
+		host      = global_config['database']['remote']['host'],
+		user      = global_config['database']['remote']['username'],
+		passwd    = global_config['database']['remote']['password'],
+		db        = global_config['database']['remote']['schema']
+	)
 
 db.generate_mapping(create_tables=True)
 
@@ -214,19 +287,16 @@ app = Bottle()
 
 default_content = json.dumps({
 	'external': False,
-	'markdown': """
-		# This is the default content for a Sakamoto page.
+	'markdown': """# This is the default content for a Sakamoto page.
 
-		See the "Help" link in the administrator menu to learn how to edit it.
-	""",
+See the "Help" link in the administrator menu to learn how to edit it.
+""",
 	'link'    : '',
 })
 
-# Initial Startup
+# First Startup
 try:
 	with db_session:
-		defaults = json.loads(open('./config.json', 'r').read())
-		
 		Page(
 			id       = -1,
 			name     = 'Home',
@@ -241,9 +311,9 @@ try:
 		)
 
 		User(
-			name  = defaults['init_adminaccount']['username'],
+			name  = global_config['default_admin_account']['username'],
 			auth  = bcrypt.hashpw(
-				defaults['init_adminaccount']['password'].encode(),
+				global_config['default_admin_account']['password'].encode(),
 				bcrypt.gensalt()
 			),
 			admin = True
