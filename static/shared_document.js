@@ -3,15 +3,22 @@ function dirname(path) {
 	return path.substr(0, path.lastIndexOf("/"));
 }
 
-if ( top === self ) {
-	e = localStorage.getItem("root");
-	if (e == null) {
-		root = dirname(dirname(document.currentScript.src));
-	} else {
-		root = e;
+window.addEventListener('load', function() {
+	if ( top === self ) {
+		e = localStorage.getItem("root");
+		if (e == null) {
+			root = dirname(dirname(document.currentScript.src));
+		} else {
+			root = e;
+		}
+		window.location.href = root+'?ref='+window.location.href;
 	}
-	window.location.href = root+'?ref='+window.location.href;
-}
+
+	/* Needed to resolve a bug in Bottle, I guess? */
+	document.querySelectorAll('form[method="post"]').forEach(function(node) {
+		node.enctype = 'multipart/form-data';
+	});
+}, false);
 
 if (document.title == 'menu' || document.title == 'navbar') {
 	e = window.location.href;
