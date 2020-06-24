@@ -1,7 +1,0 @@
-{
-  "init_adminaccount": {
-    "comment": "This is the account that will be created when you first initialize Sakamoto. You can safely remove the details in this file after the user has been created.",
-    "username": "admin",
-    "password": "admin"
-  }
-}
