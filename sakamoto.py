@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Sakamoto is a basic but somewhat adorable content management system,
 inspired by a previous project for viewing Python module documentation.
