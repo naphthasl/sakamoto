@@ -971,7 +971,9 @@ def fileupload():
 	check_admin()
 	
 	upload = request.files.get('fileselect')
-	
+	if upload == None:
+		errorout('./', 'You did not provide a file to upload.')
+
 	read = upload.file.read()
 	if len(read) > OPTIONS['static_upload_max_size']:
 		errorout('./', 'Upload too big, maximum size is {0} bytes.'.format(
