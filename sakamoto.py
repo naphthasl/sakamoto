@@ -19,10 +19,10 @@ import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 import bcrypt, time, base64, json, random, io, string, pickle, mimetypes
-import html, pytz, math, xxhash, toml, argparse, sys
+import html, pytz, math, xxhash, toml, argparse, sys, re
 
 from collections.abc import MutableMapping
-from bottle import Bottle, run, request, response
+from bottle import Bottle, run, request, response, HTTPError, HTTPResponse
 from bottle import redirect, abort, template, static_file
 from pony.orm import *
 from datetime import datetime
@@ -30,6 +30,7 @@ from pathlib import Path
 from operator import is_not
 from functools import partial
 from claptcha import Claptcha
+from pathlib import Path
 from PIL import Image
 
 configfile_name = os.path.join(os.getcwd(), 'config.toml')
@@ -253,6 +254,7 @@ try:
 	OPTIONS['allow_comments'        ]
 	OPTIONS['dangerous_tips'        ]
 	OPTIONS['copyright_message'     ]
+	OPTIONS['theme'                 ]
 except KeyError:
 	OPTIONS['title'                 ] = 'Sakamoto'
 	OPTIONS['static_upload_max_size'] = 8388608
@@ -263,6 +265,7 @@ except KeyError:
 		'DEFAULT COPYRIGHT HOLDER',
 		'DEFAULT RIGHTS'
 	)
+	OPTIONS['theme'                 ] = 'valhalla'
 
 tips = json.loads(open('./tips.json', 'r').read())
 
@@ -1203,7 +1206,21 @@ def server_static(filepath):
 	# NOTE: This is a deep route, but that's fine.
 	# This is the ONLY one that I find okay.
 
-	return static_file(filepath, root='./static')
+	generic_static_route = os.path.join(os.path.abspath('./static'), '')
+	generic_static_path = os.path.abspath(
+		os.path.join(generic_static_route, filepath.strip('/\\'))
+	)
+
+	if not generic_static_path.startswith(generic_static_route):
+		abort(403, "Access denied.")
+
+	if not Path(generic_static_path).exists():
+		return static_file(filepath, root = './themes/{0}'.format(
+				re.sub('[^\w\-_\. ]', '_', OPTIONS['theme'])
+			)
+		)
+	else:
+		return static_file(filepath, root = generic_static_route)
 
 def main():
 	parser = argparse.ArgumentParser(
