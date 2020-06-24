@@ -1,6 +1,9 @@
-/* Fucking framesets and iframes, always creating complications like this... */
 function dirname(path) {
 	return path.substr(0, path.lastIndexOf("/"));
+}
+
+function revisedRandId() {
+	return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
 }
 
 window.addEventListener('load', function() {
@@ -18,6 +21,22 @@ window.addEventListener('load', function() {
 	document.querySelectorAll('form[method="post"]').forEach(function(node) {
 		node.enctype = 'multipart/form-data';
 	});
+	
+	/*
+	document.querySelectorAll('form input[type="password"]').forEach(function(node) {
+		var	visible_id = revisedRandId();
+		
+		var hidden = document.createElement('input');
+		hidden.type = 'hidden';
+		hidden.name = node.name; hidden.id = node.id;
+		node.name = ''; node.id = visible_id;
+		node.parentNode.appendChild(hidden);
+		
+		var recalc_func = function() {
+			
+		}
+	});
+	*/
 }, false);
 
 if (document.title == 'menu' || document.title == 'navbar') {

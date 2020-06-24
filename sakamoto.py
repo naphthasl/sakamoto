@@ -33,6 +33,21 @@ from claptcha import Claptcha
 from pathlib import Path
 from PIL import Image
 
+acceptable_username_set = set(
+	string.ascii_lowercase
+	+ string.digits
+	+ '_-@!?./+'
+)
+
+def random_id(l: int = 16) -> str:
+	return ''.join([random.choice(
+		list(
+			string.ascii_lowercase
+			+ string.digits
+			+ string.ascii_uppercase
+		)
+	) for _ in range(l)])
+
 configfile_name = os.path.join(os.getcwd(), 'config.toml')
 try:
 	configfile = open(configfile_name, 'r').read()
@@ -84,7 +99,7 @@ schema = ""
 # administrator menu too, as it will explain how to actually use Sakamoto.
 	""".format(toml.dumps({
 		'version': __version__
-	}), ''.join([random.choice(string.ascii_lowercase) for _ in range(16)]))
+	}), random_id(16))
 
 	open(configfile_name, 'w').write(configfile)
 
@@ -96,12 +111,6 @@ the database options.""")
 	sys.exit()
 
 global_config = toml.loads(configfile)
-
-acceptable_username_set = set(
-	string.ascii_lowercase
-	+ string.digits
-	+ '_-@!?./+'
-)
 
 def image_destroyer(im):
 	im = im.convert('RGBA')
@@ -255,6 +264,7 @@ try:
 	OPTIONS['dangerous_tips'        ]
 	OPTIONS['copyright_message'     ]
 	OPTIONS['theme'                 ]
+	OPTIONS['site_identifier_salt'  ]
 except KeyError:
 	OPTIONS['title'                 ] = 'Sakamoto'
 	OPTIONS['static_upload_max_size'] = 8388608
@@ -266,6 +276,7 @@ except KeyError:
 		'DEFAULT RIGHTS'
 	)
 	OPTIONS['theme'                 ] = 'valhalla'
+	OPTIONS['site_identifier_salt'  ] = random_id(32)
 
 tips = json.loads(open('./tips.json', 'r').read())
 
@@ -846,7 +857,11 @@ def actiondo():
 # USER ACCOUNTS SYSTEM
 @app.get('/login')
 def login():
-	return template('login',  captcha=gen_captcha())
+	return template(
+		'login',
+		captcha = gen_captcha(),
+		salt    = OPTIONS['site_identifier_salt']
+	)
 	
 @app.get('/logout')
 @db_session
@@ -890,7 +905,12 @@ def do_login():
 
 @app.get('/register')
 def register():
-	return template('register', captcha=gen_captcha(), tip=get_tip('register'))
+	return template(
+		'register',
+		captcha = gen_captcha(),
+		tip     = get_tip('register'),
+		salt    = OPTIONS['site_identifier_salt']
+	)
 	
 @app.post('/register')
 @db_session
@@ -949,7 +969,8 @@ def newpassword():
 		hint    = 'New Password',
 		type    = 'password',
 		dobject = user['name'],
-		default = ''
+		default = '',
+		salt    = OPTIONS['site_identifier_salt']
 	)
 
 @app.post('/password')

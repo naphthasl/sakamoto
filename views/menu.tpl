@@ -117,6 +117,6 @@
 
 			document.getElementById('footer-spacer').style.height = document.getElementsByClassName('footer')[0].scrollHeight + 'px';
 		</script>
-		<script type="text/javascript" src="./static/shared_document.js"></script>
+		% include('shared_js.tpl', navback = './')
 	</body>
 </html>

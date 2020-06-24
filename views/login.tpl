@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<td><label for="password">Password</label></td>
-					<td><input type="password" id="password" name="password" /></td>
+					<td><input type="password" id="password" name="password" data-salt="{{salt}}" data-seed-id="username" /></td>
 				</tr>
 				<tr>
 					<td><label for="captcha">What are the numbers above?</label></td>
@@ -40,6 +40,6 @@
 			</table>
 		</form>
 		
-		<script type="text/javascript" src="./static/shared_document.js"></script> 
+		% include('shared_js.tpl', navback = './')
 	</body>
 </html>

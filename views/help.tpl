@@ -57,6 +57,6 @@
             <li>You can ban users in the <a href="./users">user management</a> menu.</li>
         </ul>
 
-		<script type="text/javascript" src="./static/shared_document.js"></script> 
+		% include('shared_js.tpl', navback = './')
 	</body>
 </html>

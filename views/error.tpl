@@ -8,10 +8,10 @@
 		<link rel="stylesheet" href="./static/main.css" />
 	</head>
 	<body>
-		 <div class="error">
+		<div class="error">
 			<p>ERROR: {{error}}</p>
-		 </div>
+		</div>
 		 
-		 <script type="text/javascript" src="./static/shared_document.js"></script>
+		% include('shared_js.tpl', navback = './')
 	</body>
 </html>

@@ -20,12 +20,12 @@
 				</tr>
 				<tr>
 					<td><label for="password">Password</label></td>
-					<td><input type="password" id="password" name="password" /></td>
+					<td><input type="password" id="password" name="password" data-salt="{{salt}}" data-seed-id="username" /></td>
 					<td>Your password must be under 128 characters and above 4 characters. It is case sensitive, and will be stored using BCrypt with a default work factor of 12.</td>
 				</tr>
 				<tr>
 					<td><label for="password">Confirm Password</label></td>
-					<td><input type="password" id="password2" name="password2" /></td>
+					<td><input type="password" id="password2" name="password2" data-salt="{{salt}}" data-seed-id="username" /></td>
 					<td>Type your password again, both to help you remember it and to ensure that you have typed it correctly.</td>
 				</td>
 				<tr>
@@ -52,6 +52,6 @@
 			<p>{{!tip}}</p>
 		</div>
 		
-		<script type="text/javascript" src="./static/shared_document.js"></script>
+		% include('shared_js.tpl', navback = './')
 	</body>
 </html>

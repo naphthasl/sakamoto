@@ -86,11 +86,7 @@ import xxhash
 			</div>
 		<% end %>
 		
-		<script
-			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-			crossorigin="anonymous"></script>
-
+		% include('shared_js.tpl', navback = '../')
 		<script type="text/javascript" src="../static/autosize/dist/autosize.min.js"></script>
 		<script type="text/javascript" src="../static/marked/marked.min.js"></script>
 		<script type="text/javascript">
@@ -108,7 +104,6 @@ import xxhash
 			}, false);
 		</script>
 		
-		<script type="text/javascript" src="../static/shared_document.js"></script>
 		<script type="text/javascript" src="../static/jdenticon/dist/jdenticon.min.js"></script>
 	</body>
 </html>

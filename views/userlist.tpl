@@ -27,6 +27,6 @@
 				</tr>
 			<% end %>
 		 </table>
-		 <script type="text/javascript" src="./static/shared_document.js"></script>
+		 % include('shared_js.tpl', navback = './')
 	</body>
 </html>
