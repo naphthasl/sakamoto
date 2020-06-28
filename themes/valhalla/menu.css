@@ -226,6 +226,10 @@ html {
 	background: url('./tree-mid.png') repeat-y;
 }
 
+.menu-index .menutext.nodown {
+	background: none;
+}
+
 .tree-passthrough, .tree-collapse, .tree-hidden, .menu-index li img {
 	float: left;
 }

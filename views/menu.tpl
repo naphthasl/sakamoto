@@ -52,11 +52,15 @@
 			}
 			
 			function toggleExpandClass(x) {
+				x.classList.toggle('tree-hidden');
+				
 				document.querySelectorAll('.menu-index li').forEach(function(node) {
 					recomputeCoverupHeights(node);
+					
+					node.querySelectorAll('.tree-hidden').forEach(function(subnode) {
+						subnode.parentNode.classList.add("nodown");
+					});
 				});
-				
-				x.classList.toggle('tree-hidden');
 			}
 			
 			function recomputeCoverupHeights(node) {
@@ -76,6 +80,10 @@
 					
 					coverup.style.height = '100%';
 					coverup.style.height = (coverup.clientHeight - llheight) + 'px';
+					
+					node.querySelector('.menutext').classList.remove("nodown");
+				} else {
+					node.querySelector('.menutext').classList.add("nodown");
 				}
 			}
 			
@@ -89,6 +97,8 @@
 					recomputeCoverupHeights(node);
 				} else {
 					node.querySelector('.menutext').innerHTML = '<span class="tree-passthrough"></span>' + node.querySelector('.menutext').innerHTML;
+					
+					recomputeCoverupHeights(node);
 				}
 				
 				node.querySelectorAll('ul > li').forEach(x);
